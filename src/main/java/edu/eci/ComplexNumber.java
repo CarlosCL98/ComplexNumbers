@@ -88,8 +88,11 @@ public class ComplexNumber {
 	 * Este método retorna como string este número complejo
 	 * @return el string de la forma a+bi de el número complejo.
 	 */
-	public String numeroComplejo() {
-		return this.real + "" + this.imaginario + "i";
+	public String formaNormalNumeroComplejo() {
+		String numeroComplejo = "";
+		if (this.imaginario > 0) numeroComplejo = this.real + "+" + this.imaginario + "i";
+		else numeroComplejo = this.real + "" + this.imaginario + "i";
+		return numeroComplejo;
 	}
 	
 	/**

@@ -26,9 +26,20 @@ public class MathComplexTest extends TestCase {
     }
 
     /**
-     * Rigourous Test :-)
+     * Prueba inicial
      */
-    public void testApp() {
+   public void testApp() {
         assertTrue( true );
+    }
+   
+   /**
+    * 
+    */
+    public void testDeberiaSumarDosNumeroComplejos() {
+    	ComplexNumber c1 = new ComplexNumber(1, 5);
+    	ComplexNumber c2 = new ComplexNumber(7, 3);
+    	ComplexNumber result = MathComplex.sumar(c1, c2);
+    	ComplexNumber resultToCompare = new ComplexNumber(8,8);
+        assertTrue(result.getReal() == resultToCompare.getReal() && result.getImaginario() == resultToCompare.getImaginario());
     }
 }
