@@ -97,7 +97,7 @@ public class ComplexNumber {
 	
 	/**
 	 * Este método retorna como string las coordenadas cartesianas de este número complejo
-	 * @return
+	 * @return un string de la forma (x=real,y=imaginario)
 	 */
 	public String coordenadasCartesianas() {
 		return "(x = "+this.real+", y = "+this.imaginario+")";
@@ -105,7 +105,7 @@ public class ComplexNumber {
 	
 	/**
 	 * Este método retorna como string las coordenadas polares de este número complejo
-	 * @return
+	 * @return un string de la forma (p=modulo,theta=fase)
 	 */
 	public String coordenadasPolares() {
 		return "(p = "+this.modulo()+", theta = "+this.phase()+")";

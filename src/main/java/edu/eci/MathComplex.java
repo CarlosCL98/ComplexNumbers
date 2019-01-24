@@ -44,7 +44,7 @@ public class MathComplex {
 	 */
 	public static ComplexNumber multiplicar(ComplexNumber c1, ComplexNumber c2) {
 		double real = (c1.getReal() * c2.getReal()) - (c1.getImaginario() * c2.getImaginario());
-		double imaginario = (c1.getReal() * c2.getImaginario()) - (c1.getImaginario() * c2.getReal());
+		double imaginario = (c1.getReal() * c2.getImaginario()) + (c1.getImaginario() * c2.getReal());
 		return new ComplexNumber(real, imaginario);
 	}
 	
