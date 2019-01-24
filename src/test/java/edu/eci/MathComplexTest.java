@@ -116,10 +116,26 @@ public class MathComplexTest extends TestCase {
      /**
       * 
       */
+     public void testDeberiaMultiplicarDosNumeroComplejo3() {
+		ComplexNumber c1 = new ComplexNumber(-5, -2);
+		ComplexNumber c2 = new ComplexNumber(0, 0);
+		ComplexNumber result = MathComplex.multiplicar(c1, c2);
+		ComplexNumber resultToCompare = new ComplexNumber(0, 0);
+		assertTrue(result.getReal() == resultToCompare.getReal() && result.getImaginario() == resultToCompare.getImaginario());
+     }
+     
+     /**
+      * 
+      */
      public void testDeberiaDividirDosNumeroComplejos1() {
 		ComplexNumber c1 = new ComplexNumber(5, 0);
 		ComplexNumber c2 = new ComplexNumber(0, 2);
-		ComplexNumber result = MathComplex.dividir(c1, c2);
+		ComplexNumber result = new ComplexNumber();
+		try {
+			result = MathComplex.dividir(c1, c2);
+		} catch (MathComplexException e) {
+			System.out.println(e.getMessage());
+		}
 		ComplexNumber resultToCompare = new ComplexNumber(0, -2.5);
 		assertTrue(result.getReal() == resultToCompare.getReal() && result.getImaginario() == resultToCompare.getImaginario());
      }
@@ -130,7 +146,12 @@ public class MathComplexTest extends TestCase {
      public void testDeberiaDividirDosNumeroComplejos2() {
 		ComplexNumber c1 = new ComplexNumber(0, 5);
 		ComplexNumber c2 = new ComplexNumber(2, 0);
-		ComplexNumber result = MathComplex.dividir(c1, c2);
+		ComplexNumber result = new ComplexNumber();
+		try {
+			result = MathComplex.dividir(c1, c2);
+		} catch (MathComplexException e) {
+			System.out.println(e.getMessage());
+		}
 		ComplexNumber resultToCompare = new ComplexNumber(0, 2.5);
 		assertTrue(result.getReal() == resultToCompare.getReal() && result.getImaginario() == resultToCompare.getImaginario());
      }
@@ -141,8 +162,26 @@ public class MathComplexTest extends TestCase {
      public void testDeberiaDividirDosNumeroComplejos3() {
 		ComplexNumber c1 = new ComplexNumber(0, 3);
 		ComplexNumber c2 = new ComplexNumber(-1, -1);
-		ComplexNumber result = MathComplex.dividir(c1, c2);
+		ComplexNumber result = new ComplexNumber();
+		try {
+			result = MathComplex.dividir(c1, c2);
+		} catch (MathComplexException e) {
+			System.out.println(e.getMessage());
+		}
 		ComplexNumber resultToCompare = new ComplexNumber(-1.5, -1.5);
 		assertTrue(result.getReal() == resultToCompare.getReal() && result.getImaginario() == resultToCompare.getImaginario());
+     }
+     
+     /**
+      * 
+      */
+     public void testNoDeberiaDividirDosNumeroComplejosSiElDenominadorEsCero() {
+		ComplexNumber c1 = new ComplexNumber(-8, 3);
+		ComplexNumber c2 = new ComplexNumber(0, 0);
+		try {
+			ComplexNumber result = MathComplex.dividir(c1, c2);
+		} catch (MathComplexException e) {
+			assertTrue(e.getMessage().equals(MathComplexException.DIVISION_COMPLEJA_CERO));
+		}
      }
 }

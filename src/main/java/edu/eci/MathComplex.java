@@ -54,8 +54,10 @@ public class MathComplex {
 	 * @param c1
 	 * @param c2
 	 * @return el nuevo número complejo resultado de la división.
+	 * @throws MathComplexException 
 	 */
-	public static ComplexNumber dividir(ComplexNumber c1, ComplexNumber c2) {
+	public static ComplexNumber dividir(ComplexNumber c1, ComplexNumber c2) throws MathComplexException {
+		if ((c2.getReal() == (double) 0) && (c2.getImaginario() == (double) 0)) throw new MathComplexException(MathComplexException.DIVISION_COMPLEJA_CERO);
 		double denominador = Math.pow(c2.getReal(), 2) + Math.pow(c2.getImaginario(), 2);
 		double real = ((c1.getReal() * c2.getReal()) + (c1.getImaginario() * c2.getImaginario())) / denominador;
 		double imaginario = ((c2.getReal() * c1.getImaginario()) - (c1.getReal() * c2.getImaginario())) / denominador;
