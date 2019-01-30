@@ -6,17 +6,19 @@ import java.lang.Math;
  * Esta clase representa a los número complejos.
  *
  * @author Carlos Andrés Medina Rivas
- * @version 1.0
+ * @version 2.0
  */
 public class ComplexNumber {
 
-    private double real;
-    private double imaginario;
+    private static double real;
+    private static double imaginario;
 
     /**
      * Constructor vacío de la clase NumeroComplejo.
      */
     public ComplexNumber() {
+        this.real = (double) 0;
+        this.imaginario = (double) 0;
     }
 
     /**
@@ -35,8 +37,8 @@ public class ComplexNumber {
      *
      * @return el módulo del número complejo.
      */
-    public double modulo() {
-        return Math.sqrt(Math.pow(this.real, 2) + Math.pow(this.imaginario, 2));
+    public static double modulo() {
+        return Math.sqrt(Math.pow(real, 2) + Math.pow(imaginario, 2));
     }
 
     /**
@@ -44,8 +46,8 @@ public class ComplexNumber {
      *
      * @return la fase del número complejo.
      */
-    public double phase() {
-        return Math.atan(this.imaginario / this.real);
+    public static double phase() {
+        return Math.atan(imaginario / real);
     }
 
     /**
@@ -53,8 +55,18 @@ public class ComplexNumber {
      *
      * @return el conjugado de este número complejo.
      */
-    public ComplexNumber conjugado() {
-        return new ComplexNumber(this.real, -(this.imaginario));
+    public static ComplexNumber conjugado() {
+        return new ComplexNumber(real, -(imaginario));
+    }
+    
+    /**
+     * Este método retorna la negación del este número complejo, es decir que niega
+     * tanto la parte real como la imaginaria.
+     * 
+     * @return el número complejo negado.
+     */
+    public static ComplexNumber negacion() {
+        return new ComplexNumber(-(imaginario), -(real));
     }
 
     /**
@@ -62,7 +74,7 @@ public class ComplexNumber {
      * @return la parte real de este número complejo.
      */
     public double getReal() {
-        return this.real;
+        return real;
     }
 
     /**
@@ -70,7 +82,7 @@ public class ComplexNumber {
      * @param real
      */
     public void setReal(double real) {
-        this.real = real;
+        real = real;
     }
 
     /**
@@ -78,7 +90,7 @@ public class ComplexNumber {
      * @return la parte imaginaria de este número complejo.
      */
     public double getImaginario() {
-        return this.imaginario;
+        return imaginario;
     }
 
     /**
@@ -86,7 +98,7 @@ public class ComplexNumber {
      * @param imaginario
      */
     public void setImaginario(double imaginario) {
-        this.imaginario = imaginario;
+        imaginario = imaginario;
     }
 
     /**
@@ -94,12 +106,12 @@ public class ComplexNumber {
      *
      * @return el string de la forma a+bi de el número complejo.
      */
-    public String formaNormalNumeroComplejo() {
+    public String prettyPrintFormaNormalNumeroComplejo() {
         String numeroComplejo = "";
-        if (this.imaginario > 0) {
-            numeroComplejo = this.real + "+" + this.imaginario + "i";
+        if (imaginario > 0) {
+            numeroComplejo = real + "+" + imaginario + "i";
         } else {
-            numeroComplejo = this.real + "" + this.imaginario + "i";
+            numeroComplejo = real + "" + imaginario + "i";
         }
         return numeroComplejo;
     }
@@ -111,7 +123,7 @@ public class ComplexNumber {
      * @return un string de la forma (x=real,y=imaginario)
      */
     public String prettyPrintcoordenadasCartesianas() {
-        return "(x = " + this.real + ", y = " + this.imaginario + ")";
+        return "(x = " + real + ", y = " + imaginario + ")";
     }
 
     /**
@@ -121,12 +133,19 @@ public class ComplexNumber {
      * @return un string de la forma (p=modulo,theta=fase)
      */
     public String prettyPrintCoordenadasPolares() {
-        return "(p = " + this.modulo() + ", theta = " + this.phase() + ")";
+        return "(p = " + modulo() + ", theta = " + phase() + ")";
     }
     
+    /**
+     * Este método compara este número complejo con el número complejo que es 
+     * ingresado en el parámetro
+     * 
+     * @param c es un número complejo
+     * @return true si son iguales, false si no lo son.
+     */
     public boolean equals(ComplexNumber c) {
         boolean equals = false;
-        if (this.real == c.real && this.imaginario == c.imaginario) equals = true;
+        if (real == c.real && imaginario == c.imaginario) equals = true;
         return equals;
     }
 }
