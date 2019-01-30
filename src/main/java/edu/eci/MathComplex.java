@@ -19,7 +19,7 @@ public class MathComplex {
      * @param c2 número complejo.
      * @return el nuevo número complejo resultado de la suma.
      */
-    public static ComplexNumber sumarNumerosComplejos(ComplexNumber c1, ComplexNumber c2) {
+    public static ComplexNumber sumar(ComplexNumber c1, ComplexNumber c2) {
         double real = c1.getReal() + c2.getReal();
         double imaginario = c1.getImaginario() + c2.getImaginario();
         return new ComplexNumber(real, imaginario);
@@ -33,7 +33,7 @@ public class MathComplex {
      * @param c2 número complejo.
      * @return el nuevo número complejo resultado de la resta.
      */
-    public static ComplexNumber restarNumerosComplejos(ComplexNumber c1, ComplexNumber c2) {
+    public static ComplexNumber restar(ComplexNumber c1, ComplexNumber c2) {
         double real = c1.getReal() - c2.getReal();
         double imaginario = c1.getImaginario() - c2.getImaginario();
         return new ComplexNumber(real, imaginario);
@@ -47,7 +47,7 @@ public class MathComplex {
      * @param c2 número complejo.
      * @return el nuevo número complejo resultado de la multiplicación.
      */
-    public static ComplexNumber multiplicarNumerosComplejos(ComplexNumber c1, ComplexNumber c2) {
+    public static ComplexNumber multiplicar(ComplexNumber c1, ComplexNumber c2) {
         double real = (c1.getReal() * c2.getReal()) - (c1.getImaginario() * c2.getImaginario());
         double imaginario = (c1.getReal() * c2.getImaginario()) + (c1.getImaginario() * c2.getReal());
         return new ComplexNumber(real, imaginario);
@@ -62,7 +62,7 @@ public class MathComplex {
      * @return el nuevo número complejo resultado de la división.
      * @throws MathComplexException
      */
-    public static ComplexNumber dividirNumerosComplejos(ComplexNumber c1, ComplexNumber c2) throws MathComplexException {
+    public static ComplexNumber dividir(ComplexNumber c1, ComplexNumber c2) throws MathComplexException {
         if ((c2.getReal() == (double) 0) && (c2.getImaginario() == (double) 0)) {
             throw new MathComplexException(MathComplexException.DIVISION_COMPLEJA_CERO);
         }
@@ -79,7 +79,7 @@ public class MathComplex {
      * @param c número complejo.
      * @return el número complejo con las coordenadas polares.
      */
-    public static ComplexNumber convertirAPolarNumerosComplejos(ComplexNumber c) {
+    public static ComplexNumber convertirAPolar(ComplexNumber c) {
         return new ComplexNumber(c.modulo(), c.phase());
     }
 
@@ -90,7 +90,7 @@ public class MathComplex {
      * @param c número complejo.
      * @return el número complejo con las coordenadas cartesianas.
      */
-    public static ComplexNumber convertirACartesianoNumerosComplejos(ComplexNumber c) {
+    public static ComplexNumber convertirACartesiano(ComplexNumber c) {
         return new ComplexNumber(c.getReal() * Math.cos(c.getImaginario()), c.getReal() * Math.sin(c.getImaginario()));
     }
 
@@ -103,13 +103,13 @@ public class MathComplex {
      * @return el vector de complejos resultante de la suma.
      * @throws MathComplexException
      */
-    public static ComplexNumber[] sumarVectoresComplejos(ComplexNumber[] v1, ComplexNumber[] v2) throws MathComplexException {
+    public static ComplexNumber[] sumarVectores(ComplexNumber[] v1, ComplexNumber[] v2) throws MathComplexException {
         if (v1.length != v2.length) {
             throw new MathComplexException(MathComplexException.LONGITUD_VECTORES_DIFERENTE);
         }
         ComplexNumber[] sumaVectores = new ComplexNumber[v1.length];
         for (int i = 0; i < v1.length; i++) {
-            sumaVectores[i] = sumarNumerosComplejos(v1[i], v2[i]);
+            sumaVectores[i] = sumar(v1[i], v2[i]);
         }
         return sumaVectores;
     }
@@ -151,10 +151,10 @@ public class MathComplex {
      * @param v el vector de complejos al que se le va a multiplicar el escalar.
      * @return un vector de complejos resultante de la multiplicación escalar.
      */
-    public static ComplexNumber[] calcularMultiplicacionEscalarEnVectoresComplejos(ComplexNumber c, ComplexNumber[] v) {
+    public static ComplexNumber[] calcularMultiplicacionEscalarConVectores(ComplexNumber c, ComplexNumber[] v) {
         ComplexNumber[] multiplicacionEscalarVectores = new ComplexNumber[v.length];
         for (int i = 0; i < v.length; i++) {
-            multiplicacionEscalarVectores[i] = multiplicarNumerosComplejos(c, v[i]);
+            multiplicacionEscalarVectores[i] = multiplicar(c, v[i]);
         }
         return multiplicacionEscalarVectores;
     }
@@ -167,13 +167,13 @@ public class MathComplex {
      * @return una matríz de complejos resultado de la suma.
      * @throws MathComplexException
      */
-    public static ComplexNumber[][] sumarMatricesComplejas(ComplexNumber[][] m1, ComplexNumber[][] m2) throws MathComplexException {
+    public static ComplexNumber[][] sumarMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2) throws MathComplexException {
         if (m1.length != m2.length || m1[0].length != m2[0].length) {
             throw new MathComplexException(MathComplexException.SUMA_DIMENSION_MATRICES_DIFERENTE);
         }
         ComplexNumber[][] sumaMatrices = new ComplexNumber[m1.length][m1[0].length];
         for (int i = 0; i < m1.length; i++) {
-            sumaMatrices[i] = sumarVectoresComplejos(m1[i], m2[i]);
+            sumaMatrices[i] = sumarVectores(m1[i], m2[i]);
         }
         return sumaMatrices;
     }
@@ -184,7 +184,7 @@ public class MathComplex {
      * @param m matríz de complejos.
      * @return el inverso de la matríz de complejos.
      */
-    public static ComplexNumber[][] calcularInversoMatrizCompleja(ComplexNumber[][] m) {
+    public static ComplexNumber[][] calcularInversoMatriz(ComplexNumber[][] m) {
         ComplexNumber[][] inversoMatriz = new ComplexNumber[m.length][m[0].length];
         for (int i = 0; i < m.length; i++) {
             inversoMatriz[i] = calcularInversoVector(m[i]);
@@ -200,10 +200,10 @@ public class MathComplex {
      * @param m la matriz de complejos al que se le va a multiplicar el escalar.
      * @return una matríz de complejos resultado de la multiplicación escalar.
      */
-    public static ComplexNumber[][] calcularMultiplicacionEscalarEnMatricesComplejas(ComplexNumber c, ComplexNumber[][] m) {
+    public static ComplexNumber[][] calcularMultiplicacionEscalarConMatrices(ComplexNumber c, ComplexNumber[][] m) {
         ComplexNumber[][] multiplicacionEscalarMatrices = new ComplexNumber[m.length][m[0].length];
         for (int i = 0; i < m.length; i++) {
-            multiplicacionEscalarMatrices[i] = calcularMultiplicacionEscalarEnVectoresComplejos(c, m[i]);
+            multiplicacionEscalarMatrices[i] = calcularMultiplicacionEscalarConVectores(c, m[i]);
         }
         return multiplicacionEscalarMatrices;
     }
@@ -214,7 +214,7 @@ public class MathComplex {
      * @param m matriz de complejos.
      * @return el conjugado de la matriz de complejos.
      */
-    public static ComplexNumber[][] calcularConjugadoMatrizCompleja(ComplexNumber[][] m) {
+    public static ComplexNumber[][] calcularConjugadoMatriz(ComplexNumber[][] m) {
         ComplexNumber[][] conjugadoMatriz = new ComplexNumber[m.length][m[0].length];
         for (int i = 0; i < m.length; i++) {
             conjugadoMatriz[i] = calcularConjugadoVector(m[i]);
@@ -228,7 +228,7 @@ public class MathComplex {
      * @param m matriz de complejos.
      * @return la transpuesta de la matriz de complejos.
      */
-    public static ComplexNumber[][] calcularTranspuestaMatrizCompleja(ComplexNumber[][] m) {
+    public static ComplexNumber[][] calcularTranspuestaMatriz(ComplexNumber[][] m) {
         ComplexNumber[][] transpuestaMatriz = new ComplexNumber[m.length][m[0].length];
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[0].length; j++) {
@@ -245,8 +245,8 @@ public class MathComplex {
      * @param m matriz de complejos.
      * @return la adjunta de la matriz de complejos.
      */
-    public static ComplexNumber[][] adjuntaMatrizCompleja(ComplexNumber[][] m) {
-        return calcularConjugadoMatrizCompleja(calcularTranspuestaMatrizCompleja(m));
+    public static ComplexNumber[][] calcularAdjuntaMatriz(ComplexNumber[][] m) {
+        return calcularConjugadoMatriz(calcularTranspuestaMatriz(m));
     }
 
     /**
@@ -258,7 +258,7 @@ public class MathComplex {
      * matrices.
      * @throws MathComplexException
      */
-    public static ComplexNumber[][] multiplicarMatricesComplejas(ComplexNumber[][] m1, ComplexNumber[][] m2) throws MathComplexException {
+    public static ComplexNumber[][] multiplicarMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2) throws MathComplexException {
         if (m1[0].length != m2.length) {
             throw new MathComplexException(MathComplexException.MULTIPLICACION_DIMENSION_MATRICES_DIFERENTE);
         }
@@ -268,7 +268,7 @@ public class MathComplex {
         for (int i = 0; i < m1.length && i_f < m1.length; i++) {
             result = new ComplexNumber();
             for (int j = 0; j < m1[0].length; j++) {
-                result = sumarNumerosComplejos(result, multiplicarNumerosComplejos(m1[i][j], m2[j][i]));
+                result = sumar(result, multiplicar(m1[i][j], m2[j][i]));
             }
             multiplicacionMatrices[i_f][j_f] = result;
             if (j_f >= m2[0].length) {
