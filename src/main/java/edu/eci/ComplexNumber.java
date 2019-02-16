@@ -3,9 +3,9 @@ package edu.eci;
 import java.lang.Math;
 
 /**
- * Esta clase representa a un número complejo.
+ * Esta clase representa a un numero complejo.
  *
- * @author Carlos Andrés Medina Rivas
+ * @author Carlos Andres Medina Rivas
  * @version 2.0
  */
 public class ComplexNumber {
@@ -14,7 +14,7 @@ public class ComplexNumber {
     private double imaginario;
 
     /**
-     * Constructor vacío de la clase NumeroComplejo.
+     * Constructor vacio de la clase NumeroComplejo.
      */
     public ComplexNumber() {
         this.real = (double) 0;
@@ -22,7 +22,7 @@ public class ComplexNumber {
     }
 
     /**
-     * Constructor con parámetros de la clase NumeroComplejo.
+     * Constructor con parametros de la clase NumeroComplejo.
      *
      * @param real
      * @param imaginario
@@ -33,37 +33,37 @@ public class ComplexNumber {
     }
 
     /**
-     * Este método retorna el módulo de este número complejo.
+     * Este mï¿½todo retorna el modulo de este numero complejo.
      *
-     * @return el módulo del número complejo.
+     * @return el modulo del numero complejo.
      */
     public double modulo() {
         return Math.sqrt(Math.pow(real, 2) + Math.pow(imaginario, 2));
     }
 
     /**
-     * Este método retorna la fase de este número complejo.
+     * Este metodo retorna la fase de este numero complejo.
      *
-     * @return la fase del número complejo.
+     * @return la fase del nï¿½mero complejo.
      */
     public double phase() {
         return Math.atan(imaginario / real);
     }
 
     /**
-     * Este método retorna el conjugado de este número complejo.
+     * Este metodo retorna el conjugado de este numero complejo.
      *
-     * @return el conjugado de este número complejo.
+     * @return el conjugado de este nï¿½mero complejo.
      */
     public ComplexNumber conjugado() {
         return new ComplexNumber(real, -(imaginario));
     }
 
     /**
-     * Este método retorna la negación del este número complejo, es decir que
+     * Este metodo retorna la negacion del este numero complejo, es decir que
      * niega tanto la parte real como la imaginaria.
      *
-     * @return el número complejo negado.
+     * @return el numero complejo negado.
      */
     public ComplexNumber negacion() {
         return new ComplexNumber(-(real), -(imaginario));
@@ -71,7 +71,7 @@ public class ComplexNumber {
 
     /**
      *
-     * @return la parte real de este número complejo.
+     * @return la parte real de este numero complejo.
      */
     public double getReal() {
         return real;
@@ -87,7 +87,7 @@ public class ComplexNumber {
 
     /**
      *
-     * @return la parte imaginaria de este número complejo.
+     * @return la parte imaginaria de este numero complejo.
      */
     public double getImaginario() {
         return imaginario;
@@ -102,9 +102,9 @@ public class ComplexNumber {
     }
 
     /**
-     * Este método retorna como string este número complejo
+     * Este metodo retorna como string este numero complejo
      *
-     * @return el string de la forma a+bi de el número complejo.
+     * @return el string de la forma a+bi de el numero complejo.
      */
     public String prettyPrintFormaNormalNumeroComplejo() {
         String numeroComplejo = "";
@@ -117,8 +117,8 @@ public class ComplexNumber {
     }
 
     /**
-     * Este método retorna como string las coordenadas cartesianas de este
-     * número complejo
+     * Este metodo retorna como string las coordenadas cartesianas de este
+     * numero complejo
      *
      * @return un string de la forma (x=real,y=imaginario)
      */
@@ -127,7 +127,7 @@ public class ComplexNumber {
     }
 
     /**
-     * Este método retorna como string las coordenadas polares de este número
+     * Este metodo retorna como string las coordenadas polares de este numero
      * complejo
      *
      * @return un string de la forma (p=modulo,theta=fase)
@@ -137,10 +137,10 @@ public class ComplexNumber {
     }
 
     /**
-     * Este método compara este número complejo con el número complejo que es
-     * ingresado en el parámetro
+     * Este metodo compara este numero complejo con el numero complejo que es
+     * ingresado en el parametro
      *
-     * @param c es un número complejo
+     * @param c es un numero complejo
      * @return true si son iguales, false si no lo son.
      */
     public boolean equals(ComplexNumber c) {

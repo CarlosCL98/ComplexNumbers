@@ -3,21 +3,21 @@ package edu.eci;
 import java.lang.Math;
 
 /**
- * Esta clase contiene las operaciones que se pueden realizar con los números
+ * Esta clase contiene las operaciones que se pueden realizar con los numeros
  * complejos.
  *
- * @author Carlos Andrés Medina Rivas
+ * @author Carlos Andres Medina Rivas
  * @version 3.0
  */
 public class MathComplex {
 
     /**
-     * Este método realiza la suma de dos número complejos y devuelve el nuevo
-     * número complejo.
+     * Este metodo realiza la suma de dos numero complejos y devuelve el nuevo
+     * numero complejo.
      *
-     * @param c1 número complejo.
-     * @param c2 número complejo.
-     * @return el nuevo número complejo resultado de la suma.
+     * @param c1 numero complejo.
+     * @param c2 numero complejo.
+     * @return el nuevo numero complejo resultado de la suma.
      */
     public static ComplexNumber sumar(ComplexNumber c1, ComplexNumber c2) {
         double real = c1.getReal() + c2.getReal();
@@ -26,12 +26,12 @@ public class MathComplex {
     }
 
     /**
-     * Este método realiza la resta de dos número complejos y devuelve el nuevo
-     * número complejo.
+     * Este metodo realiza la resta de dos numero complejos y devuelve el nuevo
+     * numero complejo.
      *
-     * @param c1 número complejo.
-     * @param c2 número complejo.
-     * @return el nuevo número complejo resultado de la resta.
+     * @param c1 numero complejo.
+     * @param c2 numero complejo.
+     * @return el nuevo numero complejo resultado de la resta.
      */
     public static ComplexNumber restar(ComplexNumber c1, ComplexNumber c2) {
         double real = c1.getReal() - c2.getReal();
@@ -40,12 +40,12 @@ public class MathComplex {
     }
 
     /**
-     * Este método realiza la multiplicación de dos número complejos y devuelve
-     * el nuevo número complejo.
+     * Este metodo realiza la multiplicacion de dos numero complejos y devuelve
+     * el nuevo numero complejo.
      *
-     * @param c1 número complejo.
-     * @param c2 número complejo.
-     * @return el nuevo número complejo resultado de la multiplicación.
+     * @param c1 numero complejo.
+     * @param c2 numero complejo.
+     * @return el nuevo numero complejo resultado de la multiplicacion.
      */
     public static ComplexNumber multiplicar(ComplexNumber c1, ComplexNumber c2) {
         double real = (c1.getReal() * c2.getReal()) - (c1.getImaginario() * c2.getImaginario());
@@ -54,12 +54,12 @@ public class MathComplex {
     }
 
     /**
-     * Este método realiza la división de dos número complejos y devuelve el
-     * nuevo número complejo.
+     * Este metodo realiza la division de dos numero complejos y devuelve el
+     * nuevo numero complejo.
      *
-     * @param c1 número complejo.
-     * @param c2 número complejo.
-     * @return el nuevo número complejo resultado de la división.
+     * @param c1 numero complejo.
+     * @param c2 numero complejo.
+     * @return el nuevo numero complejo resultado de la division.
      * @throws MathComplexException
      */
     public static ComplexNumber dividir(ComplexNumber c1, ComplexNumber c2) throws MathComplexException {
@@ -73,29 +73,29 @@ public class MathComplex {
     }
 
     /**
-     * Este método convierte un número complejo de coordenadas cartesianas a
+     * Este metodo convierte un numero complejo de coordenadas cartesianas a
      * coordenadas polares.
      *
-     * @param c número complejo.
-     * @return el número complejo con las coordenadas polares.
+     * @param c numero complejo.
+     * @return el numero complejo con las coordenadas polares.
      */
     public static ComplexNumber convertirAPolar(ComplexNumber c) {
         return new ComplexNumber(c.modulo(), c.phase());
     }
 
     /**
-     * Este método convierte un número complejo de coordenadas polares a
+     * Este metodo convierte un numero complejo de coordenadas polares a
      * coordenadas cartesianas.
      *
-     * @param c número complejo.
-     * @return el número complejo con las coordenadas cartesianas.
+     * @param c numero complejo.
+     * @return el numero complejo con las coordenadas cartesianas.
      */
     public static ComplexNumber convertirACartesiano(ComplexNumber c) {
         return new ComplexNumber(c.getReal() * Math.cos(c.getImaginario()), c.getReal() * Math.sin(c.getImaginario()));
     }
 
     /**
-     * Este método realiza la suma entre dos vectores dados y devuelve un nuevo
+     * Este metodo realiza la suma entre dos vectores dados y devuelve un nuevo
      * vector de complejos.
      *
      * @param v1 vector de complejos.
@@ -115,7 +115,7 @@ public class MathComplex {
     }
 
     /**
-     * Este método retorna el inverso aditivo de un vector dado, es decir que
+     * Este metodo retorna el inverso aditivo de un vector dado, es decir que
      * niega la parte real e imaginaria de cada uno de sus componentes.
      *
      * @param v vector de complejos.
@@ -130,7 +130,7 @@ public class MathComplex {
     }
 
     /**
-     * Este método retorna el conjugado de un vector de complejos.
+     * Este metodo retorna el conjugado de un vector de complejos.
      *
      * @param v vector de complejos.
      * @return el conjugado del vector de complejos.
@@ -144,12 +144,12 @@ public class MathComplex {
     }
 
     /**
-     * Este método realiza la multiplicación escalar entre un complejo y un
+     * Este metodo realiza la multiplicacion escalar entre un complejo y un
      * vector de complejos.
      *
      * @param c el complejo escalar a multiplicar.
      * @param v el vector de complejos al que se le va a multiplicar el escalar.
-     * @return un vector de complejos resultante de la multiplicación escalar.
+     * @return un vector de complejos resultante de la multiplicacion escalar.
      */
     public static ComplexNumber[] multiplicacionEscalarConVectores(ComplexNumber c, ComplexNumber[] v) {
         ComplexNumber[] multiplicacionEscalarVectores = new ComplexNumber[v.length];
@@ -160,12 +160,12 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula el producto interno (también llamado producto punto)
+     * Este metodo calcula el producto interno (tambien llamado producto punto)
      * entre dos vectores dados.
      *
      * @param v1 vector compejo.
      * @param v2 vector compejo.
-     * @return un número complejo, resultado del producto interno entre los
+     * @return un numero complejo, resultado del producto interno entre los
      * vectores complejos v1 y v2.
      * @throws MathComplexException
      */
@@ -183,10 +183,10 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula la norma o longitud de un vector de complejos.
+     * Este metodo calcula la norma o longitud de un vector de complejos.
      *
      * @param v vector complejo.
-     * @return un número real que representa la norma o longitud del vector v de
+     * @return un numero real que representa la norma o longitud del vector v de
      * complejos.
      * @throws MathComplexException
      */
@@ -195,11 +195,11 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula la distancia entre dos vectores complejos.
+     * Este metodo calcula la distancia entre dos vectores complejos.
      *
      * @param v1 vector complejo.
      * @param v2 vector complejo.
-     * @return un número real que representa la distancia entre los vectores v1
+     * @return un numero real que representa la distancia entre los vectores v1
      * y v2 de complejos.
      * @throws MathComplexException
      */
@@ -209,11 +209,11 @@ public class MathComplex {
     }
 
     /**
-     * Este método realiza la suma entre las matríces de complejos.
+     * Este metodo realiza la suma entre las matrices de complejos.
      *
-     * @param m1 matríz de complejos.
-     * @param m2 matríz de complejos.
-     * @return una matríz de complejos resultado de la suma.
+     * @param m1 matriz de complejos.
+     * @param m2 matriz de complejos.
+     * @return una matriz de complejos resultado de la suma.
      * @throws MathComplexException
      */
     public static ComplexNumber[][] sumarMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2)
@@ -229,10 +229,10 @@ public class MathComplex {
     }
 
     /**
-     * Este método retorna el inverso aditivo de una matriz de complejos.
+     * Este metodo retorna el inverso aditivo de una matriz de complejos.
      *
-     * @param m matríz de complejos.
-     * @return el inverso de la matríz de complejos.
+     * @param m matriz de complejos.
+     * @return el inverso de la matriz de complejos.
      */
     public static ComplexNumber[][] inversoMatriz(ComplexNumber[][] m) {
         ComplexNumber[][] inversoMatriz = new ComplexNumber[m.length][m[0].length];
@@ -243,12 +243,12 @@ public class MathComplex {
     }
 
     /**
-     * Este método realiza la multiplicación escalar entre un complejo y una
-     * matríz de complejos.
+     * Este metodo realiza la multiplicacion escalar entre un complejo y una
+     * matriz de complejos.
      *
      * @param c el complejo escalar a multiplicar.
      * @param m la matriz de complejos al que se le va a multiplicar el escalar.
-     * @return una matríz de complejos resultado de la multiplicación escalar.
+     * @return una matriz de complejos resultado de la multiplicacion escalar.
      */
     public static ComplexNumber[][] multiplicacionEscalarConMatrices(ComplexNumber c, ComplexNumber[][] m) {
         ComplexNumber[][] multiplicacionEscalarMatrices = new ComplexNumber[m.length][m[0].length];
@@ -259,7 +259,7 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula el conjugado de una matriz de complejos.
+     * Este metodo calcula el conjugado de una matriz de complejos.
      *
      * @param m matriz de complejos.
      * @return el conjugado de la matriz de complejos.
@@ -273,7 +273,7 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula la transpuesta de una matriz de complejos.
+     * Este metodo calcula la transpuesta de una matriz de complejos.
      *
      * @param m matriz de complejos.
      * @return la transpuesta de la matriz de complejos.
@@ -289,7 +289,7 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula la adjunta de la matriz de complejos dada, es decir
+     * Este metodo calcula la adjunta de la matriz de complejos dada, es decir
      * que la transpone y luego la conjuga.
      *
      * @param m matriz de complejos.
@@ -300,11 +300,11 @@ public class MathComplex {
     }
 
     /**
-     * Este método realiza la multiplicación entre matrices complejas.
+     * Este metodo realiza la multiplicacion entre matrices complejas.
      *
      * @param m1 matriz compleja.
      * @param m2 matriz compleja.
-     * @return una matriz compleja resultado de la multiplicación de las
+     * @return una matriz compleja resultado de la multiplicacion de las
      * matrices.
      * @throws MathComplexException
      */
@@ -333,11 +333,11 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula y retorna la traza de una matríz de complejos, que es
+     * Este metodo calcula y retorna la traza de una matriz de complejos, que es
      * la suma de los elementos de su diagonal principal.
      *
      * @param m matriz compleja.
-     * @return un número complejo, como resultado de calcular la traza de la
+     * @return un numero complejo, como resultado de calcular la traza de la
      * matriz m.
      */
     public static ComplexNumber trace(ComplexNumber[][] m) {
@@ -351,11 +351,11 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula el producto interno entre dos matrices complejas.
+     * Este metodo calcula el producto interno entre dos matrices complejas.
      *
      * @param m1 matriz compleja.
      * @param m2 matriz compleja.
-     * @return un número complejo resultado del producto interno entre las
+     * @return un numero complejo resultado del producto interno entre las
      * matrices complejas m1 y m2.
      * @throws MathComplexException
      */
@@ -365,12 +365,12 @@ public class MathComplex {
     }
 
     /**
-     * Este método calcula la acción retornando un vector de complejos,
-     * resultado de operar una matríz y un vector ambos de complejos.
+     * Este metodo calcula la accion retornando un vector de complejos,
+     * resultado de operar una matriz y un vector ambos de complejos.
      *
      * @param m matriz compleja.
      * @param v vector compejo.
-     * @return el resultado de la acción entre la matriz y el vector de
+     * @return el resultado de la accion entre la matriz y el vector de
      * complejos.
      * @throws MathComplexException
      */
@@ -391,11 +391,11 @@ public class MathComplex {
     }
 
     /**
-     * Este método determina si una matríz cuadrada es hermitaña, es decir, si
-     * la adjunta de la matríz compleja es igual a la matríz original.
+     * Este metodo determina si una matriz cuadrada es hermitiana, es decir, si
+     * la adjunta de la matriz compleja es igual a la matriz original.
      *
-     * @param m matríz compleja.
-     * @return un booleano que indica true si la matríz dada es hermitaña. En
+     * @param m matriz compleja.
+     * @return un booleano que indica true si la matriz dada es hermitiana. En
      * caso contrario, false.
      * @throws MathComplexException
      */
@@ -410,11 +410,11 @@ public class MathComplex {
     }
 
     /**
-     * Este método determina cuál es la matríz unitaria para n filas y n
+     * Este metodo determina cuï¿½l es la matriz unitaria para n filas y n
      * columnas.
      *
-     * @param n es el número de filas y columnas.
-     * @return la matríz unitaria respectiva.
+     * @param n es el numero de filas y columnas.
+     * @return la matriz unitaria respectiva.
      */
     public static ComplexNumber[][] matrizIdentidad(int n) {
         ComplexNumber[][] in = new ComplexNumber[n][n];
@@ -425,12 +425,12 @@ public class MathComplex {
     }
 
     /**
-     * Este método determina si una matríz es unitaria, es decir, si el prodcuto
-     * entre la matríz compleja con su adjunta da como resultado la matríz
+     * Este metodo determina si una matriz es unitaria, es decir, si el prodcuto
+     * entre la matriz compleja con su adjunta da como resultado la matriz
      * identidad.
      *
-     * @param m matríz compleja.
-     * @return un booleano que indica true si la matríz dada es unitaria. En
+     * @param m matriz compleja.
+     * @return un booleano que indica true si la matriz dada es unitaria. En
      * caso contrario false.
      * @throws MathComplexException
      */
@@ -455,7 +455,7 @@ public class MathComplex {
     }*/
 
     /**
-     * Este método compara dos vectores complejos.
+     * Este metodo compara dos vectores complejos.
      *
      * @param v1 vector de complejos.
      * @param v2 vector de complejos.
@@ -476,7 +476,7 @@ public class MathComplex {
     }
 
     /**
-     * Este método compara dos matrices complejas.
+     * Este metodo compara dos matrices complejas.
      *
      * @param m1 matriz de complejos.
      * @param m2 matriz de complejos.
