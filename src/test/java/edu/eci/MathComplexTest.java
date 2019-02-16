@@ -26,8 +26,8 @@ public class MathComplexTest extends TestCase {
     public static Test suite() {
         return new TestSuite(MathComplexTest.class);
     }
-
-    public void testDeberiaCompararDosComplejos() {
+    
+    public void deberiaCompararDosComplejosTest() {
         ComplexNumber c1 = new ComplexNumber(50, 35);
         ComplexNumber c2 = new ComplexNumber(50, 35);
         assertTrue(c1.equals(c2));
@@ -142,8 +142,8 @@ public class MathComplexTest extends TestCase {
             assertTrue(false);
         }
     }
-
-    public void testDeberiaObtenerElConjugadoDeUnComplejo() {
+    
+    public void deberiaObtenerElConjugadoDeUnComplejo() {
         ComplexNumber c1 = new ComplexNumber(5, 9);
         ComplexNumber result1 = c1.conjugado();
         ComplexNumber resultToCompare1 = new ComplexNumber(5, -9);
