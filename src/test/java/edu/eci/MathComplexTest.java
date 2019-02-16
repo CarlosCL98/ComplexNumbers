@@ -7,7 +7,7 @@ import junit.framework.TestSuite;
 /**
  * Unit test for MathComplexTest.
  *
- * @author Carlos Andrés Medina Rivas
+ * @author Carlos Andres Medina Rivas
  */
 public class MathComplexTest extends TestCase {
 
@@ -155,7 +155,7 @@ public class MathComplexTest extends TestCase {
         assertTrue(result2.equals(resultToCompare2));
     }
 
-    public void testDeberíaCompararDosVectores() {
+    public void testDeberiaCompararDosVectores() {
         ComplexNumber[] v1 = {new ComplexNumber(2, 5), new ComplexNumber(1, 1), new ComplexNumber(4, 3)};
         ComplexNumber[] v2 = {new ComplexNumber(2, 5), new ComplexNumber(1, 1), new ComplexNumber(4, 3)};
         assertTrue(MathComplex.equalsVector(v1, v2));
@@ -252,7 +252,7 @@ public class MathComplexTest extends TestCase {
         assertTrue(MathComplex.equalsVector(result2, resultToCompare2));
     }
 
-    public void testDeberíaCompararDosMatrices() {
+    public void testDeberiaCompararDosMatrices() {
         ComplexNumber[][] m1 = {{new ComplexNumber(2, 5), new ComplexNumber(1, 1), new ComplexNumber(4, 3)}, {new ComplexNumber(1, 8), new ComplexNumber(7, 10), new ComplexNumber(0, 3)}};
         ComplexNumber[][] m2 = {{new ComplexNumber(2, 5), new ComplexNumber(1, 1), new ComplexNumber(4, 3)}, {new ComplexNumber(1, 8), new ComplexNumber(7, 10), new ComplexNumber(0, 3)}};
         assertTrue(MathComplex.equalsMatriz(m1, m2));
