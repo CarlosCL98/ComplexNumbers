@@ -1,7 +1,9 @@
 package edu.eci;
 
+import java.lang.Math;
+
 /**
- * Esta clase representa a los número complejos.
+ * Esta clase representa a un número complejo.
  *
  * @author Carlos Andrés Medina Rivas
  * @version 2.0

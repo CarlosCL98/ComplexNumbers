@@ -203,7 +203,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(false);
         }
     }
-
+    
     public void testDeberiaObtenerElInversoDeUnVectorDeComplejos() {
         ComplexNumber[] v1 = {new ComplexNumber(2, 5), new ComplexNumber(1, 1), new ComplexNumber(4, 3)};
         ComplexNumber[] result1 = MathComplex.inversoVector(v1);
