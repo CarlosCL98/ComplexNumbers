@@ -1,13 +1,14 @@
 package edu.eci;
 
 import java.lang.Math;
+import org.omg.CORBA.MARSHAL;
 
 /**
  * Esta clase contiene las operaciones que se pueden realizar con los números
  * complejos.
  *
  * @author Carlos Andrés Medina Rivas
- * @version 2.0
+ * @version 3.0
  */
 public class MathComplex {
 
@@ -121,7 +122,7 @@ public class MathComplex {
      * @param v vector de complejos.
      * @return el inverso del vector de complejos.
      */
-    public static ComplexNumber[] calcularInversoVector(ComplexNumber[] v) {
+    public static ComplexNumber[] inversoVector(ComplexNumber[] v) {
         ComplexNumber[] inversoVector = new ComplexNumber[v.length];
         for (int i = 0; i < v.length; i++) {
             inversoVector[i] = v[i].negacion();
@@ -135,10 +136,10 @@ public class MathComplex {
      * @param v vector de complejos.
      * @return el conjugado del vector de complejos.
      */
-    public static ComplexNumber[] calcularConjugadoVector(ComplexNumber[] v) {
+    public static ComplexNumber[] conjugadoVector(ComplexNumber[] v) {
         ComplexNumber[] conjugadoVector = new ComplexNumber[v.length];
         for (int i = 0; i < v.length; i++) {
-            conjugadoVector[i] = conjugadoVector[i].conjugado();
+            conjugadoVector[i] = v[i].conjugado();
         }
         return conjugadoVector;
     }
@@ -151,12 +152,61 @@ public class MathComplex {
      * @param v el vector de complejos al que se le va a multiplicar el escalar.
      * @return un vector de complejos resultante de la multiplicación escalar.
      */
-    public static ComplexNumber[] calcularMultiplicacionEscalarConVectores(ComplexNumber c, ComplexNumber[] v) {
+    public static ComplexNumber[] multiplicacionEscalarConVectores(ComplexNumber c, ComplexNumber[] v) {
         ComplexNumber[] multiplicacionEscalarVectores = new ComplexNumber[v.length];
         for (int i = 0; i < v.length; i++) {
             multiplicacionEscalarVectores[i] = multiplicar(c, v[i]);
         }
         return multiplicacionEscalarVectores;
+    }
+
+    /**
+     * Este método calcula el producto interno (también llamado producto punto)
+     * entre dos vectores dados.
+     *
+     * @param v1 vector compejo.
+     * @param v2 vector compejo.
+     * @return un número complejo, resultado del producto interno entre los
+     * vectores complejos v1 y v2.
+     * @throws MathComplexException
+     */
+    public static ComplexNumber productoInternoVectores(ComplexNumber[] v1, ComplexNumber[] v2)
+            throws MathComplexException {
+        if (v1.length != v2.length) {
+            throw new MathComplexException(MathComplexException.LONGITUD_VECTORES_DIFERENTE);
+        }
+        ComplexNumber productoInternoVector = new ComplexNumber();
+        v1 = conjugadoVector(v1);
+        for (int i = 0; i < v1.length; i++) {
+            productoInternoVector = sumar(productoInternoVector, multiplicar(v1[i], v2[i]));
+        }
+        return productoInternoVector;
+    }
+
+    /**
+     * Este método calcula la norma o longitud de un vector de complejos.
+     *
+     * @param v vector complejo.
+     * @return un número real que representa la norma o longitud del vector v de
+     * complejos.
+     * @throws MathComplexException
+     */
+    public static double normaVector(ComplexNumber[] v) throws MathComplexException {
+        return Math.sqrt(productoInternoVectores(v, v).getReal());
+    }
+
+    /**
+     * Este método calcula la distancia entre dos vectores complejos.
+     *
+     * @param v1 vector complejo.
+     * @param v2 vector complejo.
+     * @return un número real que representa la distancia entre los vectores v1
+     * y v2 de complejos.
+     * @throws MathComplexException
+     */
+    public static double distanciaEntreVectores(ComplexNumber[] v1, ComplexNumber[] v2) throws MathComplexException {
+        ComplexNumber[] resta = sumarVectores(v1, inversoVector(v2));
+        return Math.sqrt(productoInternoVectores(resta, resta).getReal());
     }
 
     /**
@@ -167,7 +217,8 @@ public class MathComplex {
      * @return una matríz de complejos resultado de la suma.
      * @throws MathComplexException
      */
-    public static ComplexNumber[][] sumarMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2) throws MathComplexException {
+    public static ComplexNumber[][] sumarMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2)
+            throws MathComplexException {
         if (m1.length != m2.length || m1[0].length != m2[0].length) {
             throw new MathComplexException(MathComplexException.SUMA_DIMENSION_MATRICES_DIFERENTE);
         }
@@ -184,10 +235,10 @@ public class MathComplex {
      * @param m matríz de complejos.
      * @return el inverso de la matríz de complejos.
      */
-    public static ComplexNumber[][] calcularInversoMatriz(ComplexNumber[][] m) {
+    public static ComplexNumber[][] inversoMatriz(ComplexNumber[][] m) {
         ComplexNumber[][] inversoMatriz = new ComplexNumber[m.length][m[0].length];
         for (int i = 0; i < m.length; i++) {
-            inversoMatriz[i] = calcularInversoVector(m[i]);
+            inversoMatriz[i] = inversoVector(m[i]);
         }
         return inversoMatriz;
     }
@@ -200,10 +251,10 @@ public class MathComplex {
      * @param m la matriz de complejos al que se le va a multiplicar el escalar.
      * @return una matríz de complejos resultado de la multiplicación escalar.
      */
-    public static ComplexNumber[][] calcularMultiplicacionEscalarConMatrices(ComplexNumber c, ComplexNumber[][] m) {
+    public static ComplexNumber[][] multiplicacionEscalarConMatrices(ComplexNumber c, ComplexNumber[][] m) {
         ComplexNumber[][] multiplicacionEscalarMatrices = new ComplexNumber[m.length][m[0].length];
         for (int i = 0; i < m.length; i++) {
-            multiplicacionEscalarMatrices[i] = calcularMultiplicacionEscalarConVectores(c, m[i]);
+            multiplicacionEscalarMatrices[i] = multiplicacionEscalarConVectores(c, m[i]);
         }
         return multiplicacionEscalarMatrices;
     }
@@ -214,10 +265,10 @@ public class MathComplex {
      * @param m matriz de complejos.
      * @return el conjugado de la matriz de complejos.
      */
-    public static ComplexNumber[][] calcularConjugadoMatriz(ComplexNumber[][] m) {
+    public static ComplexNumber[][] conjugadoMatriz(ComplexNumber[][] m) {
         ComplexNumber[][] conjugadoMatriz = new ComplexNumber[m.length][m[0].length];
         for (int i = 0; i < m.length; i++) {
-            conjugadoMatriz[i] = calcularConjugadoVector(m[i]);
+            conjugadoMatriz[i] = conjugadoVector(m[i]);
         }
         return conjugadoMatriz;
     }
@@ -228,11 +279,11 @@ public class MathComplex {
      * @param m matriz de complejos.
      * @return la transpuesta de la matriz de complejos.
      */
-    public static ComplexNumber[][] calcularTranspuestaMatriz(ComplexNumber[][] m) {
-        ComplexNumber[][] transpuestaMatriz = new ComplexNumber[m.length][m[0].length];
-        for (int i = 0; i < m.length; i++) {
-            for (int j = 0; j < m[0].length; j++) {
-                transpuestaMatriz[j][i] = m[i][j];
+    public static ComplexNumber[][] transpuestaMatriz(ComplexNumber[][] m) {
+        ComplexNumber[][] transpuestaMatriz = new ComplexNumber[m[0].length][m.length];
+        for (int i = 0; i < m[0].length; i++) {
+            for (int j = 0; j < m.length; j++) {
+                transpuestaMatriz[i][j] = m[j][i];
             }
         }
         return transpuestaMatriz;
@@ -245,8 +296,8 @@ public class MathComplex {
      * @param m matriz de complejos.
      * @return la adjunta de la matriz de complejos.
      */
-    public static ComplexNumber[][] calcularAdjuntaMatriz(ComplexNumber[][] m) {
-        return calcularConjugadoMatriz(calcularTranspuestaMatriz(m));
+    public static ComplexNumber[][] adjuntaMatriz(ComplexNumber[][] m) {
+        return conjugadoMatriz(transpuestaMatriz(m));
     }
 
     /**
@@ -258,32 +309,155 @@ public class MathComplex {
      * matrices.
      * @throws MathComplexException
      */
-    public static ComplexNumber[][] multiplicarMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2) throws MathComplexException {
+    public static ComplexNumber[][] multiplicarMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2)
+            throws MathComplexException {
         if (m1[0].length != m2.length) {
             throw new MathComplexException(MathComplexException.MULTIPLICACION_DIMENSION_MATRICES_DIFERENTE);
         }
         ComplexNumber[][] multiplicacionMatrices = new ComplexNumber[m1.length][m2[0].length];
         ComplexNumber result;
-        int i_f = 0, j_f = 0;
-        for (int i = 0; i < m1.length && i_f < m1.length; i++) {
-            result = new ComplexNumber();
-            for (int j = 0; j < m1[0].length; j++) {
-                result = sumar(result, multiplicar(m1[i][j], m2[j][i]));
-            }
-            multiplicacionMatrices[i_f][j_f] = result;
-            if (j_f >= m2[0].length) {
-                i_f++;
-                j_f = 0;
-            } else {
-                j_f++;
+        int i, j;
+        for (int i_f = 0; i_f < m1.length; i_f++) {
+            for (int j_f = 0; j_f < m2[0].length; j_f++) {
+                result = new ComplexNumber();
+                i = 0;
+                j = 0;
+                while (j < m1[0].length && i < m2.length) {
+                    result = sumar(result, multiplicar(m1[i_f][j], m2[i][j_f]));
+                    j++;
+                    i++;
+                }
+                multiplicacionMatrices[i_f][j_f] = result;
             }
         }
         return multiplicacionMatrices;
     }
+
+    /**
+     * Este método calcula y retorna la traza de una matríz de complejos, que es
+     * la suma de los elementos de su diagonal principal.
+     *
+     * @param m matriz compleja.
+     * @return un número complejo, como resultado de calcular la traza de la
+     * matriz m.
+     */
+    public static ComplexNumber trace(ComplexNumber[][] m) {
+        ComplexNumber trace = new ComplexNumber();
+        for (int i = 0; i < m.length; i++) {
+            if (i < m[0].length) {
+                trace = sumar(trace, m[i][i]);
+            }
+        }
+        return trace;
+    }
+
+    /**
+     * Este método calcula el producto interno entre dos matrices complejas.
+     *
+     * @param m1 matriz compleja.
+     * @param m2 matriz compleja.
+     * @return un número complejo resultado del producto interno entre las
+     * matrices complejas m1 y m2.
+     * @throws MathComplexException
+     */
+    public static ComplexNumber productoInternoMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2)
+            throws MathComplexException {
+        return trace(multiplicarMatrices(adjuntaMatriz(m1), m2));
+    }
+
+    /**
+     * Este método calcula la acción retornando un vector de complejos,
+     * resultado de operar una matríz y un vector ambos de complejos.
+     *
+     * @param m matriz compleja.
+     * @param v vector compejo.
+     * @return el resultado de la acción entre la matriz y el vector de
+     * complejos.
+     * @throws MathComplexException
+     */
+    public static ComplexNumber[] accion(ComplexNumber[][] m, ComplexNumber[] v) throws MathComplexException {
+        if (m[0].length != v.length) {
+            throw new MathComplexException(MathComplexException.ACCION_DIMENSION_MATRIZ_VECTOR_DIFERENTE);
+        }
+        ComplexNumber[] accion = new ComplexNumber[v.length];
+        ComplexNumber result;
+        for (int i = 0; i < v.length; i++) {
+            result = new ComplexNumber();
+            for (int j = 0; j < m[0].length; j++) {
+                result = sumar(result, multiplicar(m[i][j], v[j]));
+            }
+            accion[i] = result;
+        }
+        return accion;
+    }
+
+    /**
+     * Este método determina si una matríz cuadrada es hermitaña, es decir, si
+     * la adjunta de la matríz compleja es igual a la matríz original.
+     *
+     * @param m matríz compleja.
+     * @return un booleano que indica true si la matríz dada es hermitaña. En
+     * caso contrario, false.
+     * @throws MathComplexException
+     */
+    public static boolean esHermitiana(ComplexNumber[][] m) throws MathComplexException {
+        if (m.length != m[0].length) {
+            throw new MathComplexException(MathComplexException.MATRIZ_NO_ES_CUADRADA);
+        }
+        boolean esHermitana = false;
+        ComplexNumber[][] adjuntaM = adjuntaMatriz(m);
+        esHermitana = equalsMatriz(adjuntaM, m);
+        return esHermitana;
+    }
+
+    /**
+     * Este método determina cuál es la matríz unitaria para n filas y n
+     * columnas.
+     *
+     * @param n es el número de filas y columnas.
+     * @return la matríz unitaria respectiva.
+     */
+    public static ComplexNumber[][] matrizIdentidad(int n) {
+        ComplexNumber[][] in = new ComplexNumber[n][n];
+        for (int i = 0; i < n; i++) {
+            in[i][i] = new ComplexNumber(1, 0);
+        }
+        return in;
+    }
+
+    /**
+     * Este método determina si una matríz es unitaria, es decir, si el prodcuto
+     * entre la matríz compleja con su adjunta da como resultado la matríz
+     * identidad.
+     *
+     * @param m matríz compleja.
+     * @return un booleano que indica true si la matríz dada es unitaria. En
+     * caso contrario false.
+     * @throws MathComplexException
+     */
+    public static boolean esUnitaria(ComplexNumber[][] m) throws MathComplexException {
+        if (m.length != m[0].length) {
+            throw new MathComplexException(MathComplexException.MATRIZ_NO_ES_CUADRADA);
+        }
+        boolean esUnitaria = false;
+        ComplexNumber[][] in = matrizIdentidad(m.length);
+        ComplexNumber[][] productoMatAdj = multiplicarMatrices(m, adjuntaMatriz(m));
+        esUnitaria = equalsMatriz(productoMatAdj, in);
+        return esUnitaria;
+    }
     
+    /*
+    public static ComplexNumber[][] productoTensor(ComplexNumber[][] m1, ComplexNumber[][] m2) {
+        ComplexNumber[][] tensor = new ComplexNumber[m1.length * m2.length][m1[0].length * m2[0].length];
+        for (int i = 0; i < m1.length; i++) {
+
+        }
+        return tensor;
+    }*/
+
     /**
      * Este método compara dos vectores complejos.
-     * 
+     *
      * @param v1 vector de complejos.
      * @param v2 vector de complejos.
      * @return true si son iguales, false si no lo son.
@@ -293,7 +467,7 @@ public class MathComplex {
         if (v1.length != v2.length) {
             equals = false;
         } else {
-            for (int i = 0; i < v1.length && !equals; i++) {
+            for (int i = 0; i < v1.length && equals; i++) {
                 if (!v1[i].equals(v2[i])) {
                     equals = false;
                 }
@@ -301,10 +475,10 @@ public class MathComplex {
         }
         return equals;
     }
-    
+
     /**
      * Este método compara dos matrices complejas.
-     * 
+     *
      * @param m1 matriz de complejos.
      * @param m2 matriz de complejos.
      * @return true si son iguales, false si no lo son.
@@ -314,7 +488,7 @@ public class MathComplex {
         if (m1.length != m2.length && m1[0].length != m2[0].length) {
             equals = false;
         } else {
-            for (int i = 0; i < m1.length && !equals; i++) {
+            for (int i = 0; i < m1.length && equals; i++) {
                 if (!equalsVector(m1[i], m2[i])) {
                     equals = false;
                 }

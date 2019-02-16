@@ -1,7 +1,5 @@
 package edu.eci;
 
-import java.lang.Math;
-
 /**
  * Esta clase representa a los número complejos.
  *
@@ -10,8 +8,8 @@ import java.lang.Math;
  */
 public class ComplexNumber {
 
-    private static double real;
-    private static double imaginario;
+    private double real;
+    private double imaginario;
 
     /**
      * Constructor vacío de la clase NumeroComplejo.
@@ -37,7 +35,7 @@ public class ComplexNumber {
      *
      * @return el módulo del número complejo.
      */
-    public static double modulo() {
+    public double modulo() {
         return Math.sqrt(Math.pow(real, 2) + Math.pow(imaginario, 2));
     }
 
@@ -46,7 +44,7 @@ public class ComplexNumber {
      *
      * @return la fase del número complejo.
      */
-    public static double phase() {
+    public double phase() {
         return Math.atan(imaginario / real);
     }
 
@@ -55,18 +53,18 @@ public class ComplexNumber {
      *
      * @return el conjugado de este número complejo.
      */
-    public static ComplexNumber conjugado() {
+    public ComplexNumber conjugado() {
         return new ComplexNumber(real, -(imaginario));
     }
-    
+
     /**
-     * Este método retorna la negación del este número complejo, es decir que niega
-     * tanto la parte real como la imaginaria.
-     * 
+     * Este método retorna la negación del este número complejo, es decir que
+     * niega tanto la parte real como la imaginaria.
+     *
      * @return el número complejo negado.
      */
-    public static ComplexNumber negacion() {
-        return new ComplexNumber(-(imaginario), -(real));
+    public ComplexNumber negacion() {
+        return new ComplexNumber(-(real), -(imaginario));
     }
 
     /**
@@ -82,7 +80,7 @@ public class ComplexNumber {
      * @param real
      */
     public void setReal(double real) {
-        real = real;
+        this.real = real;
     }
 
     /**
@@ -98,7 +96,7 @@ public class ComplexNumber {
      * @param imaginario
      */
     public void setImaginario(double imaginario) {
-        imaginario = imaginario;
+        this.imaginario = imaginario;
     }
 
     /**
@@ -135,17 +133,19 @@ public class ComplexNumber {
     public String prettyPrintCoordenadasPolares() {
         return "(p = " + modulo() + ", theta = " + phase() + ")";
     }
-    
+
     /**
-     * Este método compara este número complejo con el número complejo que es 
+     * Este método compara este número complejo con el número complejo que es
      * ingresado en el parámetro
-     * 
+     *
      * @param c es un número complejo
      * @return true si son iguales, false si no lo son.
      */
     public boolean equals(ComplexNumber c) {
         boolean equals = false;
-        if (real == c.real && imaginario == c.imaginario) equals = true;
+        if (real == c.real && imaginario == c.imaginario) {
+            equals = true;
+        }
         return equals;
     }
 }
