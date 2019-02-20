@@ -141,7 +141,7 @@ La librería también cuenta con una clase llamada **MathComplexException.java**
 Finalmente se diseño una clase llamada **MathComplexTest.java** en la cuál se realizan pruebas unitarias para verificar la funcionalidad de cada una de las operaciones entre los número complejos. Para esto y con la ayuda de Maven, se realizó la integración con circleci que es un sistema que permite la integración continua, y cada vez que se realice un cambio y este sea cargado en git, las pruebas unitarias serán ejecutadas automáticamente (más adelante se encuentra la insignia).
 
 ## Documentación de la librería:
-Para ver la documentación de esta librería, y más información sobre las funcionalidades, acceda al siguiente link: [API Números Complejos](/docs/index.html)
+Para ver la documentación de esta librería, y más información sobre las funcionalidades, acceda al siguiente link: [API Números Complejos](https://carloscl98.github.io/ComplexNumbers/docs/index.html)
 
 ## Insignias
 
