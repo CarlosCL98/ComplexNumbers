@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Unit test for MathComplexTest.
+ * Pruebas unitarias para la clase MathComplex.
  *
  * @author Carlos Andres Medina Rivas
  */
@@ -26,7 +26,7 @@ public class MathComplexTest extends TestCase {
     public static Test suite() {
         return new TestSuite(MathComplexTest.class);
     }
-    
+
     public void deberiaCompararDosComplejosTest() {
         ComplexNumber c1 = new ComplexNumber(50, 35);
         ComplexNumber c2 = new ComplexNumber(50, 35);
@@ -102,7 +102,7 @@ public class MathComplexTest extends TestCase {
         ComplexNumber c2 = new ComplexNumber(0, 0);
         try {
             MathComplex.dividir(c1, c2);
-            assertTrue(false);
+            fail("La división se logro exitosamente.");
         } catch (MathComplexException e) {
             assertTrue(e.getMessage().equals(MathComplexException.DIVISION_COMPLEJA_CERO));
         }
@@ -117,7 +117,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(resultToCompare1.equals(result1));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La división no se pudo realizar");
         }
 
         ComplexNumber c3 = new ComplexNumber(0, 5);
@@ -128,7 +128,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(resultToCompare2.equals(result2));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La división no se pudo realizar");
         }
 
         ComplexNumber c5 = new ComplexNumber(0, 3);
@@ -139,10 +139,10 @@ public class MathComplexTest extends TestCase {
             assertTrue(resultToCompare3.equals(result3));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La división no se pudo realizar");
         }
     }
-    
+
     public void deberiaObtenerElConjugadoDeUnComplejo() {
         ComplexNumber c1 = new ComplexNumber(5, 9);
         ComplexNumber result1 = c1.conjugado();
@@ -174,7 +174,7 @@ public class MathComplexTest extends TestCase {
         ComplexNumber[] v2 = {new ComplexNumber(1, 1), new ComplexNumber(2, 2)};
         try {
             MathComplex.sumarVectores(v1, v2);
-            assertTrue(false);
+            fail("La suma vectorial se logro exitosamente.");
         } catch (MathComplexException e) {
             assertTrue(e.getMessage().equals(MathComplexException.LONGITUD_VECTORES_DIFERENTE));
         }
@@ -189,7 +189,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(MathComplex.equalsVector(result, resultToCompare));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La suma vectorial no se pudo realizar.");
         }
 
         ComplexNumber[] v3 = {new ComplexNumber(1, 5), new ComplexNumber(26, 9.8), new ComplexNumber(50.1, 6.7)};
@@ -200,10 +200,10 @@ public class MathComplexTest extends TestCase {
             assertTrue(MathComplex.equalsVector(result2, resultToCompare2));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La suma vectorial no se pudo realizar.");
         }
     }
-    
+
     public void testDeberiaObtenerElInversoDeUnVectorDeComplejos() {
         ComplexNumber[] v1 = {new ComplexNumber(2, 5), new ComplexNumber(1, 1), new ComplexNumber(4, 3)};
         ComplexNumber[] result1 = MathComplex.inversoVector(v1);
@@ -271,7 +271,7 @@ public class MathComplexTest extends TestCase {
         ComplexNumber[][] m2 = {{new ComplexNumber(2, 3)}, {new ComplexNumber(3, 0)}};
         try {
             MathComplex.sumarMatrices(m1, m2);
-            assertTrue(false);
+            fail("La suma matricial se realizo exitosamente.");
         } catch (MathComplexException e) {
             assertTrue(e.getMessage().equals(MathComplexException.SUMA_DIMENSION_MATRICES_DIFERENTE));
         }
@@ -286,7 +286,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(MathComplex.equalsMatriz(result1, resultToCompare1));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La suma matricial no se pudo realizar.");
         }
 
         ComplexNumber[][] m3 = {{new ComplexNumber(2, 3), new ComplexNumber(4, 5)}, {new ComplexNumber(3, 0), new ComplexNumber(1, -5)}};
@@ -297,7 +297,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(MathComplex.equalsMatriz(result2, resultToCompare2));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La suma matricial no se pudo realizar.");
         }
     }
 
@@ -378,7 +378,7 @@ public class MathComplexTest extends TestCase {
         ComplexNumber[][] m2 = {{new ComplexNumber(3, 5), new ComplexNumber(1, 5)}};
         try {
             MathComplex.multiplicarMatrices(m1, m2);
-            assertTrue(false);
+            fail("La multiplicacion matricial se realizo exitosamente.");
         } catch (MathComplexException e) {
             assertTrue(e.getMessage().equals(MathComplexException.MULTIPLICACION_DIMENSION_MATRICES_DIFERENTE));
         }
@@ -393,7 +393,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(MathComplex.equalsMatriz(result1, resultToCompare1));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La multiplicacion matricial no se pudo realizar.");
         }
 
         ComplexNumber[][] m3 = {{new ComplexNumber(1, 2), new ComplexNumber(3, 4)}, {new ComplexNumber(2, 1), new ComplexNumber(4, 5)}, {new ComplexNumber(1, 1), new ComplexNumber(2, 2)}};
@@ -404,7 +404,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(MathComplex.equalsMatriz(result2, resultToCompare2));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La multiplicacion matricial no se pudo realizar.");
         }
     }
 
@@ -413,7 +413,7 @@ public class MathComplexTest extends TestCase {
         ComplexNumber[] v = {new ComplexNumber(1, 0), new ComplexNumber(0, 0)};
         try {
             MathComplex.accion(m, v);
-            assertTrue(false);
+            fail("La accion se realizo exitosamente.");
         } catch (MathComplexException e) {
             assertTrue(e.getMessage().equals(MathComplexException.ACCION_DIMENSION_MATRIZ_VECTOR_DIFERENTE));
         }
@@ -428,7 +428,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(MathComplex.equalsVector(result1, resultToCompare1));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La accion no se pudo realizar.");
         }
 
         ComplexNumber[][] m2 = {{new ComplexNumber(1, 1), new ComplexNumber(0, -3), new ComplexNumber(1, 0)}, {new ComplexNumber(0, 2), new ComplexNumber(0, 0), new ComplexNumber(0, 0)}, {new ComplexNumber(0, 0), new ComplexNumber(1, 3), new ComplexNumber(5, 1)}};
@@ -439,7 +439,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(MathComplex.equalsVector(result2, resultToCompare2));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("La accion no se pudo realizar.");
         }
     }
 
@@ -448,7 +448,7 @@ public class MathComplexTest extends TestCase {
         ComplexNumber[] v2 = {new ComplexNumber(1, 0), new ComplexNumber(0, 0)};
         try {
             MathComplex.productoInternoVectores(v1, v2);
-            assertTrue(false);
+            fail("El producto interno se realizo exitosamente.");
         } catch (MathComplexException e) {
             assertTrue(e.getMessage().equals(MathComplexException.LONGITUD_VECTORES_DIFERENTE));
         }
@@ -463,7 +463,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(result1.equals(resultToCompare1));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("El producto interno vectorial no se pudo realizar.");
         }
 
         ComplexNumber[] v3 = {new ComplexNumber(0, -3), new ComplexNumber(0, 0), new ComplexNumber(1, 3)};
@@ -474,7 +474,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(result2.equals(resultToCompare2));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("El producto interno vectorial no se pudo realizar.");
         }
 
         ComplexNumber[] v5 = {new ComplexNumber(1, 2), new ComplexNumber(0, 2), new ComplexNumber(-6, -3)};
@@ -485,7 +485,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(result3.equals(resultToCompare3));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("El producto interno vectorial no se pudo realizar.");
         }
 
         ComplexNumber[] v7 = {new ComplexNumber(1, 2), new ComplexNumber(0, 2), new ComplexNumber(-6, -3)};
@@ -496,7 +496,7 @@ public class MathComplexTest extends TestCase {
             assertTrue(result4.equals(resultToCompare4));
         } catch (MathComplexException e) {
             System.out.println(e.getMessage());
-            assertTrue(false);
+            fail("El producto interno vectorial no se pudo realizar.");
         }
     }
 
@@ -517,36 +517,160 @@ public class MathComplexTest extends TestCase {
         assertTrue(result3.equals(resultToCompare3));
     }
 
-    //FALTA PROBAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public void testDeberiaCalcularElProductoInternoEntreMatricesComplejas() {
-        assertTrue(true);
+        ComplexNumber[][] m1 = {{new ComplexNumber(1, 2), new ComplexNumber(3, 4)}, {new ComplexNumber(2, 1), new ComplexNumber(4, 5)}};
+        ComplexNumber[][] m2 = {{new ComplexNumber(1, 2), new ComplexNumber(3, 4)}, {new ComplexNumber(2, 1), new ComplexNumber(4, 5)}};
+        try {
+            ComplexNumber result1 = MathComplex.productoInternoMatrices(m1, m2);
+            ComplexNumber resultToCompare1 = new ComplexNumber(76, 0);
+            assertTrue(result1.equals(resultToCompare1));
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("El producto interno matricial no se pudo realizar.");
+        }
+
+        ComplexNumber[][] m3 = {{new ComplexNumber(1, 0), new ComplexNumber(0, -2)}, {new ComplexNumber(0, -5), new ComplexNumber(3, 0)}};
+        ComplexNumber[][] m4 = {{new ComplexNumber(0, -4), new ComplexNumber(-3, 0)}, {new ComplexNumber(2, 1), new ComplexNumber(3, -2)}};
+        try {
+            ComplexNumber result2 = MathComplex.productoInternoMatrices(m3, m4);
+            ComplexNumber resultToCompare2 = new ComplexNumber(4, -6);
+            assertTrue(result2.equals(resultToCompare2));
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("El producto interno matricial no se pudo realizar.");
+        }
     }
 
     public void testDeberiaCalcularLaNormaDeUnVectorComplejo() {
-        assertTrue(true);
+        ComplexNumber[] v1 = {new ComplexNumber(1, 1), new ComplexNumber(0, 2), new ComplexNumber(1, 0)};
+        try {
+            double result1 = MathComplex.normaVector(v1);
+            double resultToCompare1 = Math.sqrt(7);
+            assertTrue(result1 == resultToCompare1);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro calcular la norma de un vector.");
+        }
+
+        ComplexNumber[] v2 = {new ComplexNumber(0, -3), new ComplexNumber(0, 0), new ComplexNumber(1, 3)};
+        try {
+            double result2 = MathComplex.normaVector(v2);
+            double resultToCompare2 = Math.sqrt(19);
+            assertTrue(result2 == resultToCompare2);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro calcular la norma de un vector.");
+        }
+
+        ComplexNumber[] v3 = {new ComplexNumber(1, 0), new ComplexNumber(0, 0), new ComplexNumber(5, 1)};
+        try {
+            double result3 = MathComplex.normaVector(v3);
+            double resultToCompare3 = Math.sqrt(27);
+            assertTrue(result3 == resultToCompare3);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro calcular la norma de un vector.");
+        }
+
+        ComplexNumber[] v4 = {new ComplexNumber(4, 3), new ComplexNumber(6, -4), new ComplexNumber(12, -7), new ComplexNumber(0, 13)};
+        try {
+            double result4 = MathComplex.normaVector(v4);
+            double resultToCompare4 = Math.sqrt(439);
+            assertTrue(result4 == resultToCompare4);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro calcular la norma de un vector.");
+        }
     }
 
     public void testDeberiaCalcularLaDistanciaEntreDosVectoresComplejos() {
-        assertTrue(true);
+        ComplexNumber[] v1 = {new ComplexNumber(3, 0), new ComplexNumber(1, 0), new ComplexNumber(2, 0)};
+        ComplexNumber[] v2 = {new ComplexNumber(2, 0), new ComplexNumber(2, 0), new ComplexNumber(-1, 0)};
+        try {
+            double result1 = MathComplex.distanciaEntreVectores(v1, v2);
+            double resultToCompare1 = Math.sqrt(11);
+            assertTrue(result1 == resultToCompare1);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro calcular la distancia entre dos vectores.");
+        }
     }
 
     public void testNoDeberiaDeterminarSiUnaMatrizNoCuadradaEsHermitiana() {
-        assertTrue(true);
+        ComplexNumber[][] m = {{new ComplexNumber(1, 0), new ComplexNumber(0, 0), new ComplexNumber(1, 0)}, {new ComplexNumber(0, 0), new ComplexNumber(1, 0), new ComplexNumber(0, 0)}};
+        try {
+            MathComplex.esHermitiana(m);
+            fail("Se determino si la matriz es hermitiana.");
+        } catch (MathComplexException ex) {
+            assertTrue(ex.getMessage().equals(MathComplexException.MATRIZ_NO_ES_CUADRADA));
+        }
     }
 
     public void testDeberiaDeterminarSiUnaMatrizCuadradaEsHermitiana() {
-        assertTrue(true);
+        ComplexNumber[][] m1 = {{new ComplexNumber(5, 0), new ComplexNumber(4, 5), new ComplexNumber(6, -16)}, {new ComplexNumber(4, -5), new ComplexNumber(13, 0), new ComplexNumber(7, 0)}, {new ComplexNumber(6, 16), new ComplexNumber(7, 0), new ComplexNumber(-2.1, 0)}};
+        try {
+            boolean result1 = MathComplex.esHermitiana(m1);
+            assertTrue(result1);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro determinar si la matriz es hermitiana.");
+        }
+
+        ComplexNumber[][] m2 = {{new ComplexNumber(7, 0), new ComplexNumber(6, 5)}, {new ComplexNumber(6, -5), new ComplexNumber(-3, 0)}};
+        try {
+            boolean result2 = MathComplex.esHermitiana(m2);
+            assertTrue(result2);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro determinar si la matriz es hermitiana.");
+        }
+
+        ComplexNumber[][] m3 = {{new ComplexNumber(1, 2), new ComplexNumber(3, 4)}, {new ComplexNumber(2, 1), new ComplexNumber(4, 5)}};
+        try {
+            boolean result3 = MathComplex.esHermitiana(m3);
+            assertTrue(result3 == false);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro determinar si la matriz es hermitiana.");
+        }
     }
 
     public void testDeberiaCalcularLaMatrizIdentidad() {
-        assertTrue(true);
+        ComplexNumber[][] result1 = MathComplex.matrizIdentidad(2);
+        ComplexNumber[][] resultToCompare1 = {{new ComplexNumber(1, 0), new ComplexNumber(0, 0)}, {new ComplexNumber(0, 0), new ComplexNumber(1, 0)}};
+        assertTrue(MathComplex.equalsMatriz(result1, resultToCompare1));
+
+        ComplexNumber[][] result2 = MathComplex.matrizIdentidad(3);
+        ComplexNumber[][] resultToCompare2 = {{new ComplexNumber(1, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0)}, {new ComplexNumber(0, 0), new ComplexNumber(1, 0), new ComplexNumber(0, 0)}, {new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(1, 0)}};
+        assertTrue(MathComplex.equalsMatriz(result2, resultToCompare2));
     }
 
     public void testNoDeberiaDeterminarSiUnaMatrizNoCuadradaEsUnitaria() {
-        assertTrue(true);
+        ComplexNumber[][] resultToCompare = {{new ComplexNumber(0, 0), new ComplexNumber(1, 0), new ComplexNumber(0, 0)}, {new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(1, 0)}};
+        try {
+            MathComplex.esUnitaria(resultToCompare);
+            fail("Se determino si la matriz es unitaria.");
+        } catch (MathComplexException ex) {
+            assertTrue(ex.getMessage().equals(MathComplexException.MATRIZ_NO_ES_CUADRADA));
+        }
     }
 
     public void testDeberiaDeterminarSiUnaMatrizCuadradaEsUnitaria() {
-        assertTrue(true);
+        ComplexNumber[][] m1 = {{new ComplexNumber(0.5, 0.5), new ComplexNumber(0.5, -0.5)}, {new ComplexNumber(0.5, -0.5), new ComplexNumber(0.5, 0.5)}};
+        try {
+            boolean result1 = MathComplex.esUnitaria(m1);
+            assertTrue(result1);
+        } catch (MathComplexException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se logro determinar si la matriz es unitaria.");
+        }
     }
+
+    /*public void testDeberiaCalcularElProductoTensorEntreMatrices() {
+        ComplexNumber[][] m1 = {{new ComplexNumber(1, 0), new ComplexNumber(2, 0)}, {new ComplexNumber(3, 0), new ComplexNumber(4, 0)}};
+        ComplexNumber[][] m2 = {{new ComplexNumber(5, 0), new ComplexNumber(6, 0)}, {new ComplexNumber(7, 0), new ComplexNumber(8, 0)}};
+        ComplexNumber[][] result1 = MathComplex.productoTensorMatrices(m1, m2);
+        ComplexNumber[][] resultToCompare1 = {{new ComplexNumber(5, 0), new ComplexNumber(6, 0), new ComplexNumber(10, 0), new ComplexNumber(12, 0)}, {new ComplexNumber(7, 0), new ComplexNumber(8, 0), new ComplexNumber(14, 0), new ComplexNumber(16, 0)}, {new ComplexNumber(15, 0), new ComplexNumber(18, 0), new ComplexNumber(20, 0), new ComplexNumber(24, 0)}, {new ComplexNumber(21, 0), new ComplexNumber(24, 0), new ComplexNumber(28, 0), new ComplexNumber(32, 0)}};
+        assertTrue(MathComplex.equalsMatriz(result1, resultToCompare1));
+    }*/
 }
