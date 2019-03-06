@@ -666,11 +666,11 @@ public class MathComplexTest extends TestCase {
         }
     }
 
-    /*public void testDeberiaCalcularElProductoTensorEntreMatrices() {
+    public void testDeberiaCalcularElProductoTensorEntreMatrices() {
         ComplexNumber[][] m1 = {{new ComplexNumber(1, 0), new ComplexNumber(2, 0)}, {new ComplexNumber(3, 0), new ComplexNumber(4, 0)}};
         ComplexNumber[][] m2 = {{new ComplexNumber(5, 0), new ComplexNumber(6, 0)}, {new ComplexNumber(7, 0), new ComplexNumber(8, 0)}};
         ComplexNumber[][] result1 = MathComplex.productoTensorMatrices(m1, m2);
         ComplexNumber[][] resultToCompare1 = {{new ComplexNumber(5, 0), new ComplexNumber(6, 0), new ComplexNumber(10, 0), new ComplexNumber(12, 0)}, {new ComplexNumber(7, 0), new ComplexNumber(8, 0), new ComplexNumber(14, 0), new ComplexNumber(16, 0)}, {new ComplexNumber(15, 0), new ComplexNumber(18, 0), new ComplexNumber(20, 0), new ComplexNumber(24, 0)}, {new ComplexNumber(21, 0), new ComplexNumber(24, 0), new ComplexNumber(28, 0), new ComplexNumber(32, 0)}};
         assertTrue(MathComplex.equalsMatriz(result1, resultToCompare1));
-    }*/
+    }
 }

@@ -1,5 +1,7 @@
 package edu.eci;
 
+//import java.util.ArrayList;
+
 /**
  * Esta clase contiene las operaciones que se pueden realizar con los numeros
  * complejos.
@@ -504,36 +506,56 @@ public class MathComplex {
      * @param m2 matriz de complejos
      * @return ComplexNumber[][] : matriz con dimension igual a la dimension de
      * m1 veces la dimension de m2.
-     * @throws MathComplexException
      */
-    public static ComplexNumber[][] productoTensorMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2) throws MathComplexException {
-        throw new MathComplexException("Esta operacion no esta soportada aun.");
-        /*ComplexNumber[][] tensor = new ComplexNumber[m1.length * m2.length][m1[0].length * m2[0].length];
+    public static ComplexNumber[][] productoTensorMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2) {
+        /*throw new MathComplexException("Esta operacion no esta soportada aun.");*/
+ /*ComplexNumber[][] tensor = new ComplexNumber[m1.length * m2.length][m1[0].length * m2[0].length];
         ArrayList<ArrayList<ComplexNumber[][]>> r1 = new ArrayList<>();
         for (int i = 0; i < m1.length; i++) {
             r1.add(new ArrayList<ComplexNumber[][]>());
         }
-        System.out.println("LONGITUUUUUUUUUUUUUD: "+r1.size());
-        for (int i = 0; i < m1.length; i++) {            
+        for (int i = 0; i < m1.length; i++) {
             for (int j = 0; j < m1[0].length; j++) {
                 (r1.get(i)).add(MathComplex.multiplicacionEscalarConMatrices(m1[i][j], m2));
             }
         }
-        System.out.println(r1.size());
-        int it=0, jt=0, n=m1.length * m2.length, m=m1[0].length * m2[0].length;        
-        while(it<n){
-            while(jt<m){
-                for(int i=0; i<m1.length && (it % m1.length)==0; i++){                    
-                    for(int j=0; j<m1[0].length && (jt % m2[0].length)==0 ; j++){
+        int it = 0;
+        int jt = 0;
+        int n = m1.length * m2.length;
+        int m = m1[0].length * m2[0].length;
+        while (it < n) {
+            while (jt < m) {
+                for (int i = 0; i < m1.length && (it % m1.length) == 0; i++) {
+                    for (int j = 0; j < m1[0].length && (jt % m2[0].length) == 0; j++) {
                         tensor[it][jt] = r1.get(i).get(j)[it % m1.length][jt % m2[0].length];
                         jt++;
-                    }                    
+                    }
                 }
             }
-            jt=0;
-            it++;
-        }        
-        return tensor;*/
+            jt = 0;
+            it++;*/
+        ComplexNumber[][] tensor = new ComplexNumber[m1.length * m2.length][m1[0].length * m2[0].length];
+        int contadorFilas = 0;
+        int contadorColumnas = 0;
+        for (int i = 0; i < m1.length; i++) {
+            for (int a = 0; a < m1[0].length; a++) {
+                tensor = anadirPosicion(m1[i][a], contadorFilas, contadorColumnas, tensor, m2);
+                contadorColumnas += (m2[0].length);
+            }
+            contadorColumnas = 0;
+            contadorFilas += m2.length;
+        }
+        return tensor;
+    }
+
+    private static ComplexNumber[][] anadirPosicion(ComplexNumber valor1, int Contadorfilas, int contadorColumna, ComplexNumber[][] tensor, ComplexNumber[][] m2) {
+        ComplexNumber[][] newTensor = tensor;
+        for (int i = 0; i < m2.length; i++) {
+            for (int a = 0; a < m2[0].length; a++) {
+                newTensor[i + Contadorfilas][a + contadorColumna] = multiplicar(valor1, m2[i][a]);
+            }
+        }
+        return newTensor;
     }
 
     /**
