@@ -1,4 +1,8 @@
-package edu.eci;
+package edu.eci.Quantum;
+
+import edu.eci.Exceptions.MathComplexException;
+import edu.eci.MathComplexNumbers.MathComplex;
+import edu.eci.MathComplexNumbers.ComplexNumber;
 
 import java.util.Arrays;
 
@@ -66,7 +70,9 @@ public class QuantumExperiments {
      * realizar.
      * @return int[] - el estado del sistema despues de ciertos cambios de
      * estado.
-     * @throws edu.eci.MathComplexException
+     * @throws MathComplexException : si el numero de columnas de la matriz m es
+     * diferente a la cantidad de filas del vector v es diferente, la accion no
+     * esta definida.
      */
     public int[] experimentoConMarblesBooleano(int[][] matrizAdyacencia, int[] estadoInicial, int cantidadCambios) throws MathComplexException {
         int[] estadoFinal = estadoInicial;
@@ -81,7 +87,9 @@ public class QuantumExperiments {
      * cambios de estado, dada una matriz de adyacencia con fracciones que
      * describe como se mueven las marbles y al mismo tiempo el peso de ir de un
      * vertice a otro, un estado inicial y la cantidad de cambios de estados a
-     * realizar. Es decir devuelve el costo de haber
+     * realizar. Es decir devuelve el costo de que una marble cambie de
+     * posicion, lo que representa tambien la probabilidad de que cambie a un
+     * estado.
      *
      * @param matrizAdyacencia representa como se mueven las marbles en el
      * sistema y el peso de ir de un vertice a otro.
@@ -91,7 +99,9 @@ public class QuantumExperiments {
      * realizar.
      * @return double[] - el estado del sistema con las probabilidades de que
      * una marble se haya dirigido a un vertice u a otro.
-     * @throws edu.eci.MathComplexException
+     * @throws MathComplexException : si el numero de columnas de la matriz m es
+     * diferente a la cantidad de filas del vector v es diferente, la accion no
+     * esta definida en los numeros complejos.
      */
     public double[] experimentoConMarblesFracciones(double[][] matrizAdyacencia, double[] estadoInicial, int cantidadCambios) throws MathComplexException {
         double[] estadoFinal = estadoInicial;
@@ -106,7 +116,7 @@ public class QuantumExperiments {
      * cambios de estado, dada una matriz de adyacencia de numeros complejos que
      * describe la probabilidad de que un foton cambie de un estado a otro, un
      * estado inicial y la cantidad de cambios de estados a realizar. Es decir
-     * devuelve el costo de haber
+     * devuelve la probabilidad de que un foton cambie a cualquier estado.
      *
      * @param matrizAdyacencia representala probabilidad de que un foton cambie
      * de un estado a otro.
@@ -116,7 +126,9 @@ public class QuantumExperiments {
      * realizar.
      * @return ComplexNumber[] - el estado del sistema con las probabilidades de
      * que una marble se haya dirigido a un vertice u a otro.
-     * @throws edu.eci.MathComplexException
+     * @throws MathComplexException : si el numero de columnas de la matriz m es
+     * diferente a la cantidad de filas del vector v es diferente, la accion no
+     * esta definida en los numeros complejos.
      */
     public ComplexNumber[] experimentoConFotonesComplejos(ComplexNumber[][] matrizAdyacencia, ComplexNumber[] estadoInicial, int cantidadCambios) throws MathComplexException {
         ComplexNumber[] estadoFinal = estadoInicial;
@@ -150,6 +162,40 @@ public class QuantumExperiments {
         return multiplicacionMatrices;
     }
 
+    private void mostrarMatrizAdyacencia(double[][] m) {
+        System.out.println("MatrizBala:");
+        for (int i = 0; i < m.length; i++) {
+            System.out.print("|");
+            for (int j = 0; j < m[0].length; j++) {
+                System.out.printf("%.3f", m[i][j]);
+                System.out.print("|");
+            }
+            System.out.println("");
+        }
+    }
+
+    private void mostrarVectorCambioEstado(double[] y) {
+        System.out.println("VectorBala:");
+        System.out.print("|");
+        for (int i = 0; i < y.length; i++) {
+            System.out.printf("%.3f", y[i]);
+            System.out.print("|");
+        }
+        System.out.println("");
+    }
+
+    private String matrizAString(double[][] m) {
+        String matrizString = "[";
+        for (int i = 0; i < m.length; i++) {
+            if (i + 1 == m.length) {
+                matrizString += Arrays.toString(m[i]) + "]";
+            } else {
+                matrizString += Arrays.toString(m[i]) + ", ";
+            }
+        }
+        return matrizString;
+    }
+
     /**
      * Este metodo representa el experimento probabilístico de las dobles
      * rendijas (en este caso con 2 o más rendijas). Con este experimento se
@@ -159,7 +205,8 @@ public class QuantumExperiments {
      * al lanzar las particulas (balas o canicas) se forma un patron con forma
      * de franja en el lugar donde se esta recibiendo los disparos. Muestra la
      * matriz que se forma de las probabilidades de que las balas lleguen a
-     * distintos objetivos y el vector estado despues de realizar dos clicks.
+     * distintos objetivos y el vector estado despues de realizar dos cambios de
+     * estado.
      *
      * @param numeroSlits representa la cantidad de rendijas a usar.
      * @param numeroTargets representa la cantidad de objetivos despues de las
@@ -168,9 +215,11 @@ public class QuantumExperiments {
      * particula vaya de una rendija a un objetivo.
      * @return String[] : retorna la matriz multiplicada por si misma y el
      * vector estado despues de realizar dos clicks.
-     * @throws MathComplexException
+     * @throws MathComplexException : si la dimension de las columnas de m1 son
+     * distintas a las filas de m2, la multiplicacion entre matrices no esta
+     * definida.
      */
-    public String[] experimentoMultirendijasBalas1(int numeroSlits, int numeroTargets, double[][] probabilidades) throws MathComplexException {
+    public String[] experimentoMultirendijasBalas(int numeroSlits, int numeroTargets, double[][] probabilidades) throws MathComplexException {
         int n = numeroSlits + numeroTargets + 1;
         double[][] matrizAdyacencia = probabilidades;
         for (int i = 1; i < numeroSlits + 1; i++) {
@@ -189,49 +238,71 @@ public class QuantumExperiments {
         }
         double[][] matrizAdyacencia2 = multiplicarMatrices(matrizAdyacencia, matrizAdyacencia);
         double[] y = cambioEstadoFracciones(matrizAdyacencia2, x);
-        System.out.println("MatrizBala:");
-        for (int i = 0; i < n; i++) {
+        mostrarMatrizAdyacencia(matrizAdyacencia2);
+        mostrarVectorCambioEstado(y);
+        String[] matrizVector = {matrizAString(matrizAdyacencia2), Arrays.toString(y)};
+        return matrizVector;
+    }
+
+    private String verificarInterferencias(ComplexNumber[][] m, int numeroSlits) {
+        ComplexNumber cero = new ComplexNumber(0, 0);
+        String interferencias = "interferencias: ";
+        for (int i = numeroSlits + 1; i < m.length; i++) {
+            if (m[i][0].equals(cero)) {
+                interferencias += "[" + i + "," + 0 + "] ";
+            }
+        }
+        return interferencias;
+    }
+
+    private void mostrarMatrizFoton(ComplexNumber[][] m) {
+        System.out.println("MatrizFoton:");
+        for (int i = 0; i < m.length; i++) {
             System.out.print("|");
-            for (int j = 0; j < n; j++) {
-                System.out.printf("%.3f", matrizAdyacencia2[i][j]);
+            for (int j = 0; j < m[0].length; j++) {
+                System.out.printf(m[i][j].prettyPrintFormaNormalNumeroComplejo());
                 System.out.print("|");
             }
             System.out.println("");
         }
-        System.out.println("VectorBala:");
+    }
+
+    private void mostrarVectorFoton(ComplexNumber[] y) {
+        System.out.println("VectorFoton:");
         System.out.print("|");
-        for (int i = 0; i < n; i++) {
-            System.out.printf("%.3f", y[i]);
+        for (int i = 0; i < y.length; i++) {
+            System.out.printf(y[i].prettyPrintFormaNormalNumeroComplejo());
             System.out.print("|");
         }
         System.out.println("");
-        String matrizAdyacencia2S = "[";
-        for (int i = 0; i < n; i++) {
-            if (i + 1 == n) {
-                matrizAdyacencia2S += Arrays.toString(matrizAdyacencia2[i]) + "]";
-            } else {
-                matrizAdyacencia2S += Arrays.toString(matrizAdyacencia2[i]) + ", ";
-            }
-        }
-        String[] matrizVector = {matrizAdyacencia2S, Arrays.toString(y)};
-        return matrizVector;
     }
 
-    private void experimentoMultirendijasBalas2(int numeroSlits, int numeroTargets, double[][] probabilidades) {
-        int n = numeroSlits + numeroTargets + 1;
-        double[][] matrizAdyacencia = new double[n][n];
-        for (int i = 1; i < numeroSlits + 1; i++) {
-            matrizAdyacencia[i][0] = 1.0 / ((double) numeroSlits);
-        }
-        for (int i = numeroSlits + 1; i < n; i++) {
-            matrizAdyacencia[i][i] = 1.0;
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(matrizAdyacencia[i][j] + "|");
+    private String matrizAStringFoton(ComplexNumber[][] m) {
+        String matrizString = "[";
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                if (i + 1 == m.length) {
+                    matrizString += m[i][j].prettyPrintFormaNormalNumeroComplejo();
+                } else {
+                    matrizString += m[i][j].prettyPrintFormaNormalNumeroComplejo() + ", ";
+                }
             }
-            System.out.println("");
+            matrizString += "]";
         }
+        return matrizString;
+    }
+
+    private String vectorAStringFoton(ComplexNumber[] y) {
+        String vectorS = "{";
+        for (int i = 0; i < y.length; i++) {
+            if (i + 1 == y.length) {
+                vectorS += y[i].prettyPrintFormaNormalNumeroComplejo();
+            } else {
+                vectorS += y[i].prettyPrintFormaNormalNumeroComplejo() + ", ";
+            }
+        }
+        vectorS = "}";
+        return vectorS;
     }
 
     /**
@@ -242,8 +313,10 @@ public class QuantumExperiments {
      * interferencia, que se refiere al choque de varias ondas al mismo tiempo.
      * Este experimento es el paso de lo clasico a lo cuantico. Muestra la
      * matriz de complejos que se forma de las probabilidades de que los fotones
-     * distintos objetivos y el vector estado complejo despues de realizar dos
-     * clicks.
+     * lleguen a distintos objetivos y el vector estado de complejos despues de
+     * realizar dos clicks. Aqui tambien se verifican si existen interferencias,
+     * es decir,existen dos caminos para llegar a un mismo objetivo, por lo que
+     * se cancelan los numeros complejos cuando son sumados.
      *
      * @param numeroSlits representa la cantidad de rendijas a usar.
      * @param numeroTargets representa la cantidad de objetivos despues de las
@@ -252,7 +325,9 @@ public class QuantumExperiments {
      * vaya de una rendija a un objetivo.
      * @return String[] : retorna la matriz multiplicada por si misma y el
      * vector estado despues de realizar dos clicks.
-     * @throws MathComplexException
+     * @throws MathComplexException : si la dimension de las columnas de m1 son
+     * distintas a las filas de m2, la multiplicacion entre matrices no esta
+     * definida en los numeros complejos.
      */
     public String[] experimentoMultirendijasFotones(int numeroSlits, int numeroTargets, ComplexNumber[][] probabilidades) throws MathComplexException {
         int n = numeroSlits + numeroTargets + 1;
@@ -273,43 +348,9 @@ public class QuantumExperiments {
         }
         ComplexNumber[][] matrizAdyacencia2 = MathComplex.multiplicarMatrices(matrizAdyacencia, matrizAdyacencia);
         ComplexNumber[] y = MathComplex.accion(matrizAdyacencia2, x);
-        System.out.println("MatrizFoton:");
-        for (int i = 0; i < n; i++) {
-            System.out.print("|");
-            for (int j = 0; j < n; j++) {
-                System.out.printf(matrizAdyacencia2[i][j].prettyPrintFormaNormalNumeroComplejo());
-                System.out.print("|");
-            }
-            System.out.println("");
-        }
-        System.out.println("VectorFoton:");
-        System.out.print("|");
-        for (int i = 0; i < n; i++) {
-            System.out.printf(y[i].prettyPrintFormaNormalNumeroComplejo());
-            System.out.print("|");
-        }
-        System.out.println("");
-        String matrizAdyacencia2S = "[";
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i + 1 == n) {
-                    matrizAdyacencia2S += matrizAdyacencia2[i][j].prettyPrintFormaNormalNumeroComplejo();
-                } else {
-                    matrizAdyacencia2S += matrizAdyacencia2[i][j].prettyPrintFormaNormalNumeroComplejo() + ", ";
-                }
-            }
-            matrizAdyacencia2S += "]";
-        }
-        String vectorS = "{";
-        for (int i = 0; i < n; i++) {
-            if (i + 1 == n) {
-                vectorS += y[i].prettyPrintFormaNormalNumeroComplejo();
-            } else {
-                vectorS += y[i].prettyPrintFormaNormalNumeroComplejo() + ", ";
-            }
-        }
-        vectorS = "}";
-        String[] matrizVector = {matrizAdyacencia2S, vectorS};
+        mostrarMatrizFoton(matrizAdyacencia2);
+        mostrarVectorFoton(y);
+        String[] matrizVector = {matrizAStringFoton(matrizAdyacencia2), vectorAStringFoton(y), verificarInterferencias(matrizAdyacencia2, numeroSlits)};
         return matrizVector;
     }
 

@@ -1,4 +1,4 @@
-package edu.eci;
+package edu.eci.MathComplexNumbers;
 
 /**
  * Esta clase representa a un numero complejo.

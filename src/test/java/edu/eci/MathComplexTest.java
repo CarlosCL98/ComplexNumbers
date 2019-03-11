@@ -1,5 +1,8 @@
 package edu.eci;
 
+import edu.eci.Exceptions.MathComplexException;
+import edu.eci.MathComplexNumbers.MathComplex;
+import edu.eci.MathComplexNumbers.ComplexNumber;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

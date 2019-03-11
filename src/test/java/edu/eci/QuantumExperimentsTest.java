@@ -1,5 +1,9 @@
 package edu.eci;
 
+import edu.eci.Quantum.QuantumExperiments;
+import edu.eci.Exceptions.MathComplexException;
+import edu.eci.MathComplexNumbers.MathComplex;
+import edu.eci.MathComplexNumbers.ComplexNumber;
 import java.util.Arrays;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -122,7 +126,7 @@ public class QuantumExperimentsTest extends TestCase {
         }
     }
 
-    public void testExperimentoMultirendijasBalas1() {
+    public void testExperimentoMultirendijasBalas() {
         double[][] probabilidades = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -153,7 +157,7 @@ public class QuantumExperimentsTest extends TestCase {
             }
         }
         try {
-            String[] matrizVector = quantumExperiments.experimentoMultirendijasBalas1(2, 5, probabilidades);
+            String[] matrizVector = quantumExperiments.experimentoMultirendijasBalas(2, 5, probabilidades);
             assertTrue(matrizToCompareS.equals(matrizVector[0]));
             assertTrue(Arrays.toString(vectorToCompare).equals(matrizVector[1]));
         } catch (MathComplexException ex) {
@@ -214,10 +218,13 @@ public class QuantumExperimentsTest extends TestCase {
             }
         }
         vectorToCompareS = "}";
+        String interferencias = "interferencias: [5,0] ";
         try {
             String[] matrizVector = quantumExperiments.experimentoMultirendijasFotones(2, 5, probabilidades);
             assertTrue(matrizToCompareS.equals(matrizVector[0]));
             assertTrue(vectorToCompareS.equals(matrizVector[1]));
+            assertTrue(interferencias.equals(matrizVector[2]));
+            System.out.println(matrizVector[2]);
         } catch (MathComplexException ex) {
             System.out.println(ex.getMessage());
             fail("El experimento falló.");

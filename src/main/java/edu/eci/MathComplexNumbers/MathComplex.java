@@ -1,6 +1,7 @@
-package edu.eci;
+package edu.eci.MathComplexNumbers;
 
 //import java.util.ArrayList;
+import edu.eci.Exceptions.MathComplexException;
 
 /**
  * Esta clase contiene las operaciones que se pueden realizar con los numeros
@@ -188,8 +189,7 @@ public class MathComplex {
      * diferente, el producto interno no esta definido para los numeros
      * complejos.
      */
-    public static ComplexNumber productoInternoVectores(ComplexNumber[] v1, ComplexNumber[] v2)
-            throws MathComplexException {
+    public static ComplexNumber productoInternoVectores(ComplexNumber[] v1, ComplexNumber[] v2) throws MathComplexException {
         if (v1.length != v2.length) {
             throw new MathComplexException(MathComplexException.LONGITUD_VECTORES_DIFERENTE);
         }
@@ -207,7 +207,9 @@ public class MathComplex {
      * @param v vector complejo.
      * @return double : un numero real que representa la norma o longitud del
      * vector v de complejos.
-     * @throws MathComplexException
+     * @throws MathComplexException : si la longitud de los vectores es
+     * diferente, el producto interno no esta definido para los numeros
+     * complejos.
      */
     public static double normaVector(ComplexNumber[] v) throws MathComplexException {
         return Math.sqrt(productoInternoVectores(v, v).getReal());
@@ -222,7 +224,9 @@ public class MathComplex {
      * @param v2 vector complejo.
      * @return double : un numero real que representa la distancia entre los
      * vectores v1 y v2 de complejos.
-     * @throws MathComplexException
+     * @throws MathComplexException : si la longitud de los vectores es
+     * diferente, el producto interno no esta definido para los numeros
+     * complejos.
      */
     public static double distanciaEntreVectores(ComplexNumber[] v1, ComplexNumber[] v2) throws MathComplexException {
         ComplexNumber[] resta = sumarVectores(v1, inversoVector(v2));
@@ -497,6 +501,16 @@ public class MathComplex {
         return esUnitaria;
     }
 
+    private static ComplexNumber[][] anadirComplejo(ComplexNumber complejoAnadir, int filas, int columnas, ComplexNumber[][] pTensor, ComplexNumber[][] m2) {
+        ComplexNumber[][] nTensor = pTensor;
+        for (int i = 0; i < m2.length; i++) {
+            for (int a = 0; a < m2[0].length; a++) {
+                nTensor[i + filas][a + columnas] = multiplicar(complejoAnadir, m2[i][a]);
+            }
+        }
+        return nTensor;
+    }
+
     /**
      * Este metodo calcula el producto tensor entre dos matrices. El producto
      * tensor es multiplicar cada componente de la primera matriz con toda la
@@ -508,54 +522,88 @@ public class MathComplex {
      * m1 veces la dimension de m2.
      */
     public static ComplexNumber[][] productoTensorMatrices(ComplexNumber[][] m1, ComplexNumber[][] m2) {
-        /*throw new MathComplexException("Esta operacion no esta soportada aun.");*/
- /*ComplexNumber[][] tensor = new ComplexNumber[m1.length * m2.length][m1[0].length * m2[0].length];
-        ArrayList<ArrayList<ComplexNumber[][]>> r1 = new ArrayList<>();
-        for (int i = 0; i < m1.length; i++) {
-            r1.add(new ArrayList<ComplexNumber[][]>());
-        }
-        for (int i = 0; i < m1.length; i++) {
-            for (int j = 0; j < m1[0].length; j++) {
-                (r1.get(i)).add(MathComplex.multiplicacionEscalarConMatrices(m1[i][j], m2));
-            }
-        }
-        int it = 0;
-        int jt = 0;
-        int n = m1.length * m2.length;
-        int m = m1[0].length * m2[0].length;
-        while (it < n) {
-            while (jt < m) {
-                for (int i = 0; i < m1.length && (it % m1.length) == 0; i++) {
-                    for (int j = 0; j < m1[0].length && (jt % m2[0].length) == 0; j++) {
-                        tensor[it][jt] = r1.get(i).get(j)[it % m1.length][jt % m2[0].length];
-                        jt++;
-                    }
-                }
-            }
-            jt = 0;
-            it++;*/
-        ComplexNumber[][] tensor = new ComplexNumber[m1.length * m2.length][m1[0].length * m2[0].length];
-        int contadorFilas = 0;
-        int contadorColumnas = 0;
+        ComplexNumber[][] productotensor = new ComplexNumber[m1.length * m2.length][m1[0].length * m2[0].length];
+        int f = 0;
+        int c = 0;
         for (int i = 0; i < m1.length; i++) {
             for (int a = 0; a < m1[0].length; a++) {
-                tensor = anadirPosicion(m1[i][a], contadorFilas, contadorColumnas, tensor, m2);
-                contadorColumnas += (m2[0].length);
+                productotensor = anadirComplejo(m1[i][a], f, c, productotensor, m2);
+                c += (m2[0].length);
             }
-            contadorColumnas = 0;
-            contadorFilas += m2.length;
+            c = 0;
+            f += m2.length;
         }
-        return tensor;
+        return productotensor;
     }
 
-    private static ComplexNumber[][] anadirPosicion(ComplexNumber valor1, int Contadorfilas, int contadorColumna, ComplexNumber[][] tensor, ComplexNumber[][] m2) {
-        ComplexNumber[][] newTensor = tensor;
-        for (int i = 0; i < m2.length; i++) {
-            for (int a = 0; a < m2[0].length; a++) {
-                newTensor[i + Contadorfilas][a + contadorColumna] = multiplicar(valor1, m2[i][a]);
-            }
+    /**
+     * Este metodo calcula la norma de un vector estado de complejos. Obtiene la
+     * raiz cuadrada de la suma del modulo cuadrado de cada elemento.
+     *
+     * @param k vector estado ket con entradas complejas.
+     * @return double : un numero real que representa la norma de un vector
+     * estado ket.
+     */
+    public static double normaKet(ComplexNumber[] k) {
+        double norma = 0;
+        for (int i = 0; i < k.length; i++) {
+            norma += Math.pow(k[i].modulo(), 2);
         }
-        return newTensor;
+        norma = Math.sqrt(norma);
+        return norma;
+    }
+
+    /**
+     * Este metodo normaliza un vector ket. La representacion del ket no cambia,
+     * pero un ket normalizado se encuentra dentro del circulo unitario. La
+     * norma de este vector es igual a 1.
+     *
+     * @param k representa el vector ket a normalizar.
+     * @return ComplexNumber[] : el nuevo vector normalizado.
+     */
+    public static ComplexNumber[] normalizarVector(ComplexNumber[] k) {
+        ComplexNumber[] vectorNormalizado = new ComplexNumber[k.length];
+        double norma = normaKet(k);
+        for (int i = 0; i < k.length; i++) {
+            vectorNormalizado[i] = new ComplexNumber((k[i].getReal()) / norma, (k[i].getImaginario()) / norma);
+        }
+        return vectorNormalizado;
+    }
+
+    /**
+     * Este metodo calcula el bra, que es el adjunto de un vector de estado ket.
+     * En este caso, se calcula el conjugado de cada uno de los elementos que
+     * conforman al vector y el resultado es el vector bra.
+     *
+     * @param k representa el vector de estados ket.
+     * @return ComplexNumber[] : el nuevo vector bra, conjugado del ket dado.
+     */
+    public static ComplexNumber[] calcularBra(ComplexNumber[] k) {
+        return conjugadoVector(k);
+    }
+
+    /**
+     * Este metodo calcula el producto interno entre dos vectores estado. Se
+     * denomina Bra-Ket pues este producto interno calcula la probabilidad que
+     * el estado inicial k pase al estado final b.
+     *
+     * @param b representa el vector estado del estado final.
+     * @param k representa el vector estado del estado inicial.
+     * @return ComplexNumber : complejo que representa la probabilidad de que el
+     * estado cambie del inicial al final.
+     * @throws MathComplexException : si la longitud de los vectores es
+     * diferente, el producto interno no esta definido para los numeros
+     * complejos.
+     */
+    public static ComplexNumber productoInternoBraKet(ComplexNumber[] b, ComplexNumber[] k) throws MathComplexException {
+        if (b.length != k.length) {
+            throw new MathComplexException(MathComplexException.LONGITUD_VECTORES_DIFERENTE);
+        }
+        ComplexNumber productoInternoBraKet = new ComplexNumber();
+        for (int i = 0; i < b.length; i++) {
+            productoInternoBraKet = sumar(productoInternoBraKet, multiplicar(b[i], k[i]));
+        }
+        return productoInternoBraKet;
     }
 
     /**

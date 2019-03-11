@@ -1,4 +1,4 @@
-package edu.eci;
+package edu.eci.Exceptions;
 
 /**
  * Esta clase representa a las excepciones definidas para las operaciones entre
