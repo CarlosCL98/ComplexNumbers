@@ -48,22 +48,25 @@ Para ver la documentación de esta librería, y más información sobre las func
 1. Agregue la siguiente dependencia en el POM de su proyecto:
 
 ```xml
-	<dependency>
-		<groupId>edu.eci</groupId>
-		<artifactId>ComplexNumbers</artifactId>
-		<version>1.0-SNAPSHOT</version>
-	</dependency>
+<dependency>
+	<groupId>edu.eci</groupId>
+	<artifactId>ComplexNumbers</artifactId>
+	<version>1.0-SNAPSHOT</version>
+</dependency>
 ```
 
 2. Vuelva a compilar su proyecto para que la dependencia sea descargada mediante:
 > mvn compile
+
 > mvn package
 ### Si no está usando maven
 1. Para usar la librería, se debe primero clonar el repositorio con el comando:
 > git clone https://github.com/CarlosCL98/ComplexNumbers.git
 2. Después se accede a la dirección donde el repositorio fue clonado y se ejecutan los siguientes comando:
 > mvn compile
+
 > mvn package
+
 > mvn install
 3. El último comando **mvn install** genera un archivo .jar que puede copiar y pegar en su proyecto para poder usar la librería.
 
