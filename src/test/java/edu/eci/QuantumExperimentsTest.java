@@ -1,9 +1,9 @@
 package edu.eci;
 
-import edu.eci.Quantum.QuantumExperiments;
-import edu.eci.Exceptions.MathComplexException;
-import edu.eci.MathComplexNumbers.MathComplex;
-import edu.eci.MathComplexNumbers.ComplexNumber;
+import edu.eci.quantum.QuantumExperiments;
+import edu.eci.exceptions.MathComplexException;
+import edu.eci.mathcomplexnumbers.MathComplex;
+import edu.eci.mathcomplexnumbers.ComplexNumber;
 import java.util.Arrays;
 import junit.framework.Test;
 import junit.framework.TestCase;

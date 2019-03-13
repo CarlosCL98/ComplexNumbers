@@ -1,8 +1,8 @@
-package edu.eci.Quantum;
+package edu.eci.quantum;
 
-import edu.eci.Exceptions.MathComplexException;
-import edu.eci.MathComplexNumbers.MathComplex;
-import edu.eci.MathComplexNumbers.ComplexNumber;
+import edu.eci.exceptions.MathComplexException;
+import edu.eci.mathcomplexnumbers.MathComplex;
+import edu.eci.mathcomplexnumbers.ComplexNumber;
 
 /**
  * Esta clase representa un sistema cuantico.
@@ -51,7 +51,7 @@ public class QuantumSystem {
      * complejos.
      */
     public static ComplexNumber calcularAmplitudTransicional(ComplexNumber[] ket1, ComplexNumber[] ket2) throws MathComplexException {
-        return MathComplex.productoInternoBraKet(MathComplex.calcularBra(ket2), ket1);
+        return MathComplex.productoInternoVectores(ket2, ket1);
     }
 
 }

@@ -1,8 +1,8 @@
-package edu.eci.Quantum;
+package edu.eci.quantum;
 
-import edu.eci.Exceptions.MathComplexException;
-import edu.eci.MathComplexNumbers.MathComplex;
-import edu.eci.MathComplexNumbers.ComplexNumber;
+import edu.eci.exceptions.MathComplexException;
+import edu.eci.mathcomplexnumbers.MathComplex;
+import edu.eci.mathcomplexnumbers.ComplexNumber;
 
 import java.util.Arrays;
 
@@ -15,20 +15,12 @@ import java.util.Arrays;
  */
 public class QuantumExperiments {
 
-    /**
-     * Constructor vacio de la clase QuantumExperiments.
-     */
-    public QuantumExperiments() {
-
-    }
-
     private int[] cambioEstadoBooleanos(int[][] m, int[] v) throws MathComplexException {
         if (m[0].length != v.length) {
             throw new MathComplexException(MathComplexException.ACCION_DIMENSION_MATRIZ_VECTOR_DIFERENTE);
         }
         int[] accion = new int[v.length];
         int result = 0;
-        int valor = 0;
         for (int i = 0; i < v.length; i++) {
             for (int j = 0; j < m[0].length; j++) {
                 result = result + (m[i][j] * v[j]);
@@ -45,7 +37,6 @@ public class QuantumExperiments {
         }
         double[] accion = new double[v.length];
         double result = 0;
-        double valor = 0;
         for (int i = 0; i < v.length; i++) {
             for (int j = 0; j < m[0].length; j++) {
                 result = result + (m[i][j] * v[j]);

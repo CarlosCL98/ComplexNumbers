@@ -1,7 +1,7 @@
-package edu.eci.MathComplexNumbers;
+package edu.eci.mathcomplexnumbers;
 
 //import java.util.ArrayList;
-import edu.eci.Exceptions.MathComplexException;
+import edu.eci.exceptions.MathComplexException;
 
 /**
  * Esta clase contiene las operaciones que se pueden realizar con los numeros
@@ -568,42 +568,6 @@ public class MathComplex {
             vectorNormalizado[i] = new ComplexNumber((k[i].getReal()) / norma, (k[i].getImaginario()) / norma);
         }
         return vectorNormalizado;
-    }
-
-    /**
-     * Este metodo calcula el bra, que es el adjunto de un vector de estado ket.
-     * En este caso, se calcula el conjugado de cada uno de los elementos que
-     * conforman al vector y el resultado es el vector bra.
-     *
-     * @param k representa el vector de estados ket.
-     * @return ComplexNumber[] : el nuevo vector bra, conjugado del ket dado.
-     */
-    public static ComplexNumber[] calcularBra(ComplexNumber[] k) {
-        return conjugadoVector(k);
-    }
-
-    /**
-     * Este metodo calcula el producto interno entre dos vectores estado. Se
-     * denomina Bra-Ket pues este producto interno calcula la probabilidad que
-     * el estado inicial k pase al estado final b.
-     *
-     * @param b representa el vector estado del estado final.
-     * @param k representa el vector estado del estado inicial.
-     * @return ComplexNumber : complejo que representa la probabilidad de que el
-     * estado cambie del inicial al final.
-     * @throws MathComplexException : si la longitud de los vectores es
-     * diferente, el producto interno no esta definido para los numeros
-     * complejos.
-     */
-    public static ComplexNumber productoInternoBraKet(ComplexNumber[] b, ComplexNumber[] k) throws MathComplexException {
-        if (b.length != k.length) {
-            throw new MathComplexException(MathComplexException.LONGITUD_VECTORES_DIFERENTE);
-        }
-        ComplexNumber productoInternoBraKet = new ComplexNumber();
-        for (int i = 0; i < b.length; i++) {
-            productoInternoBraKet = sumar(productoInternoBraKet, multiplicar(b[i], k[i]));
-        }
-        return productoInternoBraKet;
     }
 
     /**

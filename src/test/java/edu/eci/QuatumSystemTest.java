@@ -1,9 +1,9 @@
 package edu.eci;
 
-import edu.eci.Exceptions.MathComplexException;
-import edu.eci.Quantum.QuantumSystem;
-import edu.eci.MathComplexNumbers.MathComplex;
-import edu.eci.MathComplexNumbers.ComplexNumber;
+import edu.eci.exceptions.MathComplexException;
+import edu.eci.quantum.QuantumSystem;
+import edu.eci.mathcomplexnumbers.MathComplex;
+import edu.eci.mathcomplexnumbers.ComplexNumber;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -96,15 +96,15 @@ public class QuatumSystemTest extends TestCase {
         double resultToCompare2 = 1.0;
         assertTrue(result2 == resultToCompare2);
     }
-    
+
     public void testCalcularLaAmplitudTransicionalBraKet() {
         ComplexNumber[] ket1 = {
-            new ComplexNumber(Math.sqrt(2)/2.0, 0),
-            new ComplexNumber(0, Math.sqrt(2)/2.0)
+            new ComplexNumber(Math.sqrt(2) / 2.0, 0),
+            new ComplexNumber(0, Math.sqrt(2) / 2.0)
         };
         ComplexNumber[] ket2 = {
-            new ComplexNumber(0, Math.sqrt(2)/2.0),
-            new ComplexNumber(-Math.sqrt(2)/2.0, 0)
+            new ComplexNumber(0, Math.sqrt(2) / 2.0),
+            new ComplexNumber(-Math.sqrt(2) / 2.0, 0)
         };
         try {
             ComplexNumber result1 = QuantumSystem.calcularAmplitudTransicional(ket1, ket2);

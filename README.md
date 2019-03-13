@@ -23,9 +23,6 @@ El uso de los números complejos permtitió el paso de lo clásico a lo cuántic
 Para esto se creó la clase **QuantumExperiments.java**, la cual representa experimentos cuanticos realizados como el de las canicas (números reales) y los fotones (números complejos), esto para poder entender y pasar de la física clásica a la cuántica. Dentro de esta clase se pueden poner a prueba diversos experimentos:
 
 - El primero es el experimento con fotones el cual muestra la probabilidad que un fotón cambie a cualquier estado posible al mismo tiempo. En primera instancia se realizó el experimento con canicas, en donde se tiene un estado inicial (donde se encuentran las canicas actualmente) y una matriz que permite saber cómo las canicas se moverán después de un cambio de estado. De esta manera, se introduce el concepto de probabilidad, permitiendo verificar cuál es la probabilidad que una canica se encuentre en cualquiera de los estados que están disponibles. Más adelante, después de haber entendido este concepto, se traslada el experimento con los fotones. Matemáticamente, se tiene una matriz de adyacencia de números complejos que describe la probabilidad de que un fotón cambie de un estado a otro, un estado inicial que es un vector columna de complejos y la cantidad de cambios de estados a realizar. El procedimiento es realizar la acción entre la matriz de adyacencia y el vector columna inicial, y después por cada cambio de estado se usa el vector columna resultante. El resultado final será la probabilidad de que un fotón esté en alguna posición después de unos cambios de estado.
-	
-	
-
 - El segundo experimento es el experimento multirendija. En un principio se usaron balas para explicar el comportamiento y después continuamos con los fotones. Con este experimento se logra demostrar que al lanzar una bala (o un electron) por las rendijas, existe cierta posibilidad que tome cualquier camino, por lo que puede pasar por cualquier rendija. En este experimento clásico se establece que al lanzar las particulas (balas o canicas) se forma un patrón con forma de franja en el lugar donde se esta recibiendo los disparos. Con los fotones el concepto es casi el mismo; al lanzar un foton por las rendijas, este toma varios caminos simultáneamente cuando no es medido, formando un patrón llamado patrón de interferencia, que se refiere al choque de las ondas al mismo tiempo (matemáticamente, cuando el choque de ondas ocurre, los números complejos que se suman en estos puntos se cancelan entre ellos). Este experimento es el paso de lo clásico a lo cuántico.
 
 	> Imagenes tomadas del video [Double-Slit Experiment](https://www.youtube.com/watch?v=DfPeprQ7oGc "Double-Slit Experiment")
@@ -43,15 +40,15 @@ Para complementar la librería, realizamos junto con Amalia Alfonso --> [link re
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/65k-r1hv4q8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Documentación de la librería:
+## Documentación de la librería
 Para ver la documentación de esta librería, y más información sobre las funcionalidades, acceda al siguiente link: [API Números Complejos](https://carloscl98.github.io/ComplexNumbers/docs/index.html)
 
 ## Insignias
 
-### CircleCI:
+### CircleCI
 [![CircleCI](https://circleci.com/gh/CarlosCL98/ComplexNumbers.svg?style=svg)](https://circleci.com/gh/CarlosCL98/ComplexNumbers)
 
-### Codacy:
+### Codacy
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5fd82b18fe334ac7bc0384fe0be4275c)](https://www.codacy.com/app/CarlosCL98/ComplexNumbers?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CarlosCL98/ComplexNumbers&amp;utm_campaign=Badge_Grade)
 
 ## Creador
@@ -69,5 +66,4 @@ Para ver más, leer el archivo **LICENSE** ubicado en la raíz de este repositor
 
 ## Referencias
 Las funciones de esta librería fueron diseñadas a partir de la lectura del libro **Quantum Computing for Computer Scientists**
-
 > S. Yanofsky, N., & A. Mannucci, M. (2008). Quantum Computing for Computer Scientists. New York: Cambridge University Press.
