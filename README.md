@@ -38,6 +38,11 @@ Después se creó la clase **QuantumSystem.java** la cual representa el primer s
 - El primer método dentro del sistema cuántico permite calcula la probabilidad que una partícula se encuentre en una ubicación o estado determinado, es decir, después de observar la particula, se podrá calcular la probabilidad que dicha particula este en un punto, pues al medirla se detecta un sólo estado. Para esto se usará un vector de estados llamado ket, el cual contiene la amplitud de cada punto como números complejos. Este es el vector que indica los posibles estados de la particula y representa que una particula puede estar simultáneamente en todas los ubicaciones o estados.
 - El segundo método permite calcular la amplitud de transición entre dos estados. Este permite determinar la probabilidad de que el estado del sistema antes de una medicion especifica (estado inicial), cambie a otro estado (estado final), una vez realizada la medición. Este proceso es llamado bra-ket, pues matemáticamente se calcula el producto interno entre el vector bra (conjugado del vector de estados ket final) y el vector de estados ket incial.
 
+## Experimento Doble Rendija
+Para complementar la librería, realizamos junto con Amalia Alfonso --> [link repositorio en git](https://github.com/acai-bjca/NumbersComplex) el experimento de la doble rendija. Para hacer una demostración, realizamos el siguiente video:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/65k-r1hv4q8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Documentación de la librería:
 Para ver la documentación de esta librería, y más información sobre las funcionalidades, acceda al siguiente link: [API Números Complejos](https://carloscl98.github.io/ComplexNumbers/docs/index.html)
 
