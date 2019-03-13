@@ -41,7 +41,9 @@ Después se creó la clase **QuantumSystem.java** la cual representa el primer s
 ## Experimento Doble Rendija
 Para complementar la librería, realizamos junto con Amalia Alfonso --> [link repositorio en git](https://github.com/acai-bjca/NumbersComplex) el experimento de la doble rendija. Para hacer una demostración, realizamos el siguiente video:
 
+´´´html
 <iframe width="560" height="315" src="https://www.youtube.com/embed/65k-r1hv4q8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+´´´
 
 ## Documentación de la librería:
 Para ver la documentación de esta librería, y más información sobre las funcionalidades, acceda al siguiente link: [API Números Complejos](https://carloscl98.github.io/ComplexNumbers/docs/index.html)
