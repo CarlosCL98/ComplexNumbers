@@ -631,7 +631,7 @@ public class MathComplexTest extends TestCase {
         ComplexNumber[][] m3 = {{new ComplexNumber(1, 2), new ComplexNumber(3, 4)}, {new ComplexNumber(2, 1), new ComplexNumber(4, 5)}};
         try {
             boolean result3 = MathComplex.esHermitiana(m3);
-            assertTrue(!result3);
+            assertFalse(result3);
         } catch (MathComplexException ex) {
             System.out.println(ex.getMessage());
             fail("No se logro determinar si la matriz es hermitiana.");
