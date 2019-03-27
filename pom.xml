@@ -34,6 +34,11 @@
             <artifactId>surefire-booter</artifactId>
             <version>2.12.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.ojalgo</groupId>
+            <artifactId>ojalgo</artifactId>
+            <version>47.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
