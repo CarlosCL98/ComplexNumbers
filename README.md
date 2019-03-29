@@ -32,8 +32,11 @@ Después se creó la clase **QuantumSystem.java** la cual representa el primer s
 
 - El primer método dentro del sistema cuántico permite calcula la probabilidad que una partícula se encuentre en una ubicación o estado determinado, es decir, después de observar la particula, se podrá calcular la probabilidad que dicha particula este en un punto, pues al medirla se detecta un sólo estado. Para esto se usará un vector de estados llamado ket, el cual contiene la amplitud de cada punto como números complejos. Este es el vector que indica los posibles estados de la particula y representa que una particula puede estar simultáneamente en todas los ubicaciones o estados.
 
-
 - El segundo método permite calcular la amplitud de transición entre dos estados. Este permite determinar la probabilidad de que el estado del sistema antes de una medicion especifica (estado inicial), cambie a otro estado (estado final), una vez realizada la medición. Este proceso es llamado bra-ket, pues matemáticamente se calcula el producto interno entre el vector bra (conjugado del vector de estados ket final) y el vector de estados ket incial.
+
+- El tercer método permite calcular las valores propios de un observable. Para este uso se usó una api de wolfram alpha, de manera que encuentra los valores propios del observable mediante la función eigenvalue(observable). Un valor propio es aquel que si al multiplicar una matriz por un vector el resultado es el mismo que multiplicar dicho valor propio por el mismo vector.
+
+- El cuarto método permite calcular la dinámica de un estado de un sistema cuántico sobre un grupo de transformaciones o matrices unitarias, de manera que se permita encontrar el estado final después de calcular la acción entre cada una de las mtrices unitarias y el vector de estado ket. Aquí se indica, que para un tiempo t, el vector de estado es igual a realizar la acción entre el vector de estado resultante en t-1 y la matriz unitaria que corresponda al tiempo t.
 
 ## Experimento Doble Rendija
 
