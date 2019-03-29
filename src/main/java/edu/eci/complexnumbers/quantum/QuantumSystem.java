@@ -4,12 +4,11 @@ import edu.eci.complexnumbers.exceptions.MathComplexException;
 import edu.eci.complexnumbers.exceptions.QuantumSystemException;
 import edu.eci.complexnumbers.mathcomplexnumbers.MathComplex;
 import edu.eci.complexnumbers.mathcomplexnumbers.ComplexNumber;
-import java.util.List;
 
-import org.ojalgo.array.Array1D;
-import org.ojalgo.array.Array2D;
-import org.ojalgo.matrix.ComplexMatrix;
-import org.ojalgo.matrix.decomposition.Eigenvalue;
+import java.util.List;
+import com.restfb.json.JsonObject;
+import edu.eci.complexnumbers.connection.HttpConnection;
+import java.io.IOException;
 
 /**
  * Esta clase representa un sistema cuantico.
@@ -116,31 +115,16 @@ public class QuantumSystem {
      * @return ComplexNumber[] : representa una lista con los valores propios
      * del observable.
      */
-    /*public static ComplexNumber[] valoresPropiosDeUnObservable(ComplexNumber[][] m) {
-        Array2D.Factory<org.ojalgo.scalar.ComplexNumber> matrizFactory = Array2D.COMPLEX;
-        Array2D<org.ojalgo.scalar.ComplexNumber> newMariz = matrizFactory.makeZero(0, 0);
-        Array1D.Factory<org.ojalgo.scalar.ComplexNumber> vectorFactory = Array1D.COMPLEX;
-        for (int i = 0; i < m.length; i++) {
-            Array1D<org.ojalgo.scalar.ComplexNumber> newVector = vectorFactory.makeZero(0);
-            for (int j = 0; j < m[0].length; j++) {
-                org.ojalgo.scalar.ComplexNumber newComplex = org.ojalgo.scalar.ComplexNumber.of(m[i][j].getReal(), m[i][j].getImaginario());
-                newVector.add(newComplex);
-            }
-            newMariz.fillRow(i, newVector);
-        }
-        Eigenvalue<org.ojalgo.scalar.ComplexNumber> eigenValue = Eigenvalue.make(newMariz, true);
-        Array1D<org.ojalgo.scalar.ComplexNumber> eigenValues = eigenValue.getEigenvalues();
-        ComplexNumber[] valoresPropios = new ComplexNumber[(int) eigenValues.length];
-        for (long i = 0; i < eigenValues.length; i++) {
-            org.ojalgo.scalar.ComplexNumber numeroComplejo = eigenValues.get(i);
-            valoresPropios[(int) i] = new ComplexNumber(numeroComplejo.getReal(), numeroComplejo.getImaginary());
-        }
-        return valoresPropios;
+    public static ComplexNumber[] valoresPropiosDeUnObservable(ComplexNumber[][] m) throws IOException {
+        HttpConnection httpConnection = new HttpConnection();
+        String response = httpConnection.getResponse(MathComplex.matrizToString(m));
+        return null;
     }
 
     public static double probabilidadQueElSistemaTransiteALosVectoresPropios(ComplexNumber[][] m, ComplexNumber[] ket) {
         return 0;
-    }*/
+    }
+    
     /**
      * Este metodo calcula el vector resultante de realizar tantos pasos como
      * sean indicados con un grupo de transformaciones que son matrices

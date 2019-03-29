@@ -5,6 +5,9 @@ import edu.eci.complexnumbers.exceptions.QuantumSystemException;
 import edu.eci.complexnumbers.quantum.QuantumSystem;
 import edu.eci.complexnumbers.mathcomplexnumbers.MathComplex;
 import edu.eci.complexnumbers.mathcomplexnumbers.ComplexNumber;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -137,7 +140,7 @@ public class QuatumSystemTest extends TestCase {
             fail("El sistema cuantico fallo en calcular la media de un observable sobre un vector estado.");
         }
     }
-    
+
     public void testDeberiaCalcularLaVarianzaDeUnOperador() {
         ComplexNumber[][] m1 = {
             {new ComplexNumber(1, 0), new ComplexNumber(0, -1)},
@@ -157,16 +160,29 @@ public class QuatumSystemTest extends TestCase {
             fail("El sistema cuantico fallo en calcular la media de un observable sobre un vector estado.");
         }
     }
-    
-    /*public void testDeberiaClacularLosValoresPropiosDeUnObservable() {
+
+    public void testDeberiaCalcularElStringDeUnaMatriz() {
         ComplexNumber[][] m1 = {
             {new ComplexNumber(-1, 0), new ComplexNumber(0, -1)},
             {new ComplexNumber(0, 1), new ComplexNumber(1, 0)}
         };
-        ComplexNumber[] result = QuantumSystem.valoresPropiosDeUnObservable(m1);
-        System.out.println(result.length);
-        System.out.println(result[0].prettyPrintFormaNormalNumeroComplejo());
-        System.out.println(result[1].prettyPrintFormaNormalNumeroComplejo());
-    }*/
+        String result = MathComplex.matrizToString(m1);
+        String resultToCompare = "{{-1.0,-1.0i},{1.0i,1.0}}";
+        assertTrue(result.equals(resultToCompare));
+    }
+
+    public void testDeberiaClacularLosValoresPropiosDeUnObservable() {
+        ComplexNumber[][] m1 = {
+            {new ComplexNumber(-1, 0), new ComplexNumber(0, -1)},
+            {new ComplexNumber(0, 1), new ComplexNumber(1, 0)}
+        };
+        try {
+            ComplexNumber[] result = QuantumSystem.valoresPropiosDeUnObservable(m1);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            fail("No se lograron calcular los valores propios de un observable");
+        }
+
+    }
 
 }

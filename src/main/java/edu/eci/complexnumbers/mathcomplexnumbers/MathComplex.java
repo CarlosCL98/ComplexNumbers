@@ -615,4 +615,44 @@ public class MathComplex {
         }
         return equals;
     }
+
+    /**
+     * Este metodo convierte una matriz de complejos a un string de la forma
+     * {{a,b+ci},{d+ei,f}}
+     *
+     * @param m representa la matriz a convertir a String.
+     * @return String : representa la cadena de la matriz de complejos entrante.
+     */
+    public static String matrizToString(ComplexNumber[][] m) {
+        String matrizString = "{";
+        for (int i = 0; i < m.length; i++) {
+            matrizString += "{";
+            for (int j = 0; j < m[0].length; j++) {
+                if (j + 1 == m[0].length) {
+                    if (m[i][j].getReal() == 0) {
+                        matrizString += m[i][j].getImaginario() + "i";
+                    } else if (m[i][j].getImaginario() == 0) {
+                        matrizString += m[i][j].getReal();
+                    } else {
+                        matrizString += m[i][j].getReal() + "" + m[i][j].getImaginario() + "i";
+                    }
+                } else {
+                    if (m[i][j].getReal() == 0) {
+                        matrizString += m[i][j].getImaginario() + "i,";
+                    } else if (m[i][j].getImaginario() == 0) {
+                        matrizString += m[i][j].getReal() + ",";
+                    } else {
+                        matrizString += m[i][j].getReal() + "" + m[i][j].getImaginario() + "i,";
+                    }
+                }
+            }
+            if (i + 1 == m.length) {
+                matrizString += "}";
+            } else {
+                matrizString += "},";
+            }
+        }
+        matrizString += "}";
+        return matrizString;
+    }
 }
