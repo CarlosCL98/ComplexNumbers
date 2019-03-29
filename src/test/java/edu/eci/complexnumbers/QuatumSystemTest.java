@@ -178,6 +178,8 @@ public class QuatumSystemTest extends TestCase {
         };
         try {
             ComplexNumber[] result = QuantumSystem.valoresPropiosDeUnObservable(m1);
+            ComplexNumber[] resultToCompare = {new ComplexNumber(-Math.sqrt(2), 0), new ComplexNumber(Math.sqrt(2), 0)};
+            assertTrue(MathComplex.equalsVector(result, resultToCompare));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             fail("No se lograron calcular los valores propios de un observable");

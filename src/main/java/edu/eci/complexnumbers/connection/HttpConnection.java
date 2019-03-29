@@ -34,7 +34,7 @@ public class HttpConnection {
         get_url = "";
     }
 
-    public String getResponse(String observable) throws IOException {
+    public List<Double> getResponse(String observable) throws IOException {
 
         get_url = "http://api.wolframalpha.com/v2/query?input=eigenvalues%20" + observable + "&appid=" + API_KEY;
 
@@ -45,6 +45,7 @@ public class HttpConnection {
 
         //The following invocation perform the connection implicitly before getting the code
         String responseContent = "";
+        List<Double> eigenValues = new ArrayList<>();
         int responseCode = con.getResponseCode();
         System.out.println("GET Response Code :: " + responseCode);
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
@@ -64,13 +65,16 @@ public class HttpConnection {
             List<String> nodos = new ArrayList<>();
             for (int i = 0; i < eigen.getLength(); i++) {
                 nodos.add((eigen.item(i).getTextContent()).substring(6));
-            }
-            System.out.println(eval(nodos.get(2)));
-            return responseContent;
+                System.out.println("Eigen "+i+":");
+                System.out.println((eigen.item(i).getTextContent()).substring(6));
+            }           
+            eigenValues.add(eval(nodos.get(1)));
+            eigenValues.add(eval(nodos.get(2)));
+            return eigenValues;
         } else {
             System.out.println("GET request not worked");
         }
-        return responseContent;
+        return eigenValues;
     }
 
     private static Document convertStringToXMLDocument(String xmlString) {
@@ -91,7 +95,7 @@ public class HttpConnection {
         }
         return null;
     }
-/*
+
     public static double eval(final String str) {
         return new Object() {
             int pos = -1, ch;
@@ -195,5 +199,5 @@ public class HttpConnection {
                 return x;
             }
         }.parse();
-    }*/
+    }
 }

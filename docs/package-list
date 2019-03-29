@@ -1,3 +1,4 @@
-edu.eci.exceptions
-edu.eci.mathcomplexnumbers
-edu.eci.quantum
+edu.eci.complexnumbers.connection
+edu.eci.complexnumbers.exceptions
+edu.eci.complexnumbers.mathcomplexnumbers
+edu.eci.complexnumbers.quantum

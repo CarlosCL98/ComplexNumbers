@@ -117,10 +117,20 @@ public class QuantumSystem {
      */
     public static ComplexNumber[] valoresPropiosDeUnObservable(ComplexNumber[][] m) throws IOException {
         HttpConnection httpConnection = new HttpConnection();
-        String response = httpConnection.getResponse(MathComplex.matrizToString(m));
-        return null;
+        List<Double> response = httpConnection.getResponse(MathComplex.matrizToString(m));
+        ComplexNumber[] valoresPropios = new ComplexNumber[response.size()];
+        for (int i = 0; i < response.size(); i++) {
+            valoresPropios[i] = new ComplexNumber(response.get(i), 0);
+        }
+        return valoresPropios;
     }
-
+    
+    /**
+     * 
+     * @param m
+     * @param ket
+     * @return 
+     */
     public static double probabilidadQueElSistemaTransiteALosVectoresPropios(ComplexNumber[][] m, ComplexNumber[] ket) {
         return 0;
     }
